@@ -1,0 +1,52 @@
+/**
+ * 定义了所有module共同的依赖
+ */
+ext {
+    kotlin_version = "1.3.0"
+    android = [
+            compileSdkVersion: 27,
+            minSdkVersion    : 19,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+    //依赖库版本
+    dependVersion = [
+            androidSupportSdkVersion: "27.1.1",
+            retrofitSdkVersion      : "2.3.0",
+            rxJava                  : "2.2.3",
+            rxAndroid               : "2.1.0"
+    ]
+    //依赖库集合
+    supportDeps = [
+            //--------  support  -------
+            supportv4  : "com.android.support:support-v4:$dependVersion.androidSupportSdkVersion",
+            appcompatv7: "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion",
+            cardview   : "com.android.support:cardview-v7:$dependVersion.androidSupportSdkVersion",
+            design     : "com.android.support:design:$dependVersion.androidSupportSdkVersion",
+    ]
+    retrofit = [
+            //------ retrofit和RxJava ---------
+            retrofit                : "com.squareup.retrofit2:retrofit:$dependVersion.retrofitSdkVersion",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofitSdkVersion",
+            retrofitScalar          : "com.squareup.retrofit2:converter-scalars:$dependVersion.retrofitSdkVersion",
+            retrofitAdapterRxjava2  : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofitSdkVersion",
+            okhttp3LoggerInterceptor: 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    ]
+    rxJava = [
+            rxJava   : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid"
+    ]
+
+
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values()
+    rxJavaLibs = rxJava.values()
+
+    //单个依赖库
+    glide = "com.github.bumptech.glide:glide:4.7.1"
+    statusbar = "com.jaeger.statusbarutil:library:1.5.1"
+    logger = "com.orhanobut:logger:2.2.0"
+    eventbus = "org.greenrobot:eventbus:3.1.1"
+    otherLibs = [glide,statusbar,logger,eventbus]
+}

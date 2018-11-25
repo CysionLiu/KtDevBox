@@ -1,1 +1,1 @@
-include ':app', ':ktbox', ':uibox'
+include ':sample', ':ktbox', ':uibox'
