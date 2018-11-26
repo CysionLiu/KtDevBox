@@ -1,0 +1,26 @@
+package com.cysion.ktbox
+
+import android.annotation.SuppressLint
+import android.content.Context
+
+/**
+ * 全局变量
+ */
+@SuppressLint("StaticFieldLeak")
+object Box {
+    var hasInited = false
+    lateinit var context: Context
+        private set
+    var debug = false
+        private set
+
+    fun init(ctx: Context, debugmode: Boolean) {
+        if (!hasInited) {
+            context = ctx.applicationContext
+            debug = debugmode
+            hasInited = true
+        } else {
+            throw IllegalArgumentException()
+        }
+    }
+}
