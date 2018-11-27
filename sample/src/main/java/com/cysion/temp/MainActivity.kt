@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import com.cysion.ktbox.Box
 import com.cysion.ktbox.base.BaseActivity
+import com.cysion.ktbox.base.ITEM_CLICK
 import com.cysion.ktbox.logd
 import kotlinx.android.synthetic.main.activity_main.*
 

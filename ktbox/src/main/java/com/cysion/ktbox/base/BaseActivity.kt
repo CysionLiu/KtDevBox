@@ -20,6 +20,7 @@ abstract class BaseActivity : AppCompatActivity() {
         EventBus.getDefault().register(this)
         initView()
         initData()
+
     }
 
     override fun onDestroy() {
@@ -37,6 +38,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun initView()
 
-    open protected fun initData() {
+    protected open fun initData() {
     }
 }

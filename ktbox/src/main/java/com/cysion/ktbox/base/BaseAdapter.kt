@@ -1,0 +1,43 @@
+package com.cysion.ktbox.base
+
+import android.content.Context
+import android.support.v7.widget.RecyclerView
+import android.view.ViewGroup
+import com.cysion.ktbox.listener.OnTypeClickListener
+
+abstract class BaseAdapter<T : Any>(
+    var mEntities: MutableList<T>, var mContext: Context,
+    var mOnTypeClickListener: OnTypeClickListener
+) : RecyclerView.Adapter<BaseViewHolder<T>>() {
+
+    override fun getItemCount(): Int {
+        return mEntities.size
+    }
+
+    override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
+        holder.bindData(mContext, mOnTypeClickListener, mEntities[position], position)
+    }
+
+    fun addEntities(aEntities: MutableList<T>) {
+        if (mEntities != null) {
+            mEntities.addAll(aEntities)
+        } else {
+            mEntities = aEntities
+        }
+        notifyDataSetChanged()
+    }
+
+    fun setEntities(aEntities: MutableList<T>) {
+        if (mEntities != null) {
+            mEntities.clear()
+            mEntities.addAll(aEntities)
+        } else {
+            mEntities = aEntities
+        }
+        notifyDataSetChanged()
+    }
+    override abstract fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T>
+}
+
+//条目单击事件，
+val ITEM_CLICK = -100000
