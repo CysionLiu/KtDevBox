@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.cysion.ktbox.logd
+import com.cysion.ktbox.utils.logd
 import com.orhanobut.logger.Logger
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

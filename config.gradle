@@ -48,5 +48,6 @@ ext {
     statusbar = "com.jaeger.statusbarutil:library:1.5.1"
     logger = "com.orhanobut:logger:2.2.0"
     eventbus = "org.greenrobot:eventbus:3.1.1"
-    otherLibs = [glide,statusbar,logger,eventbus]
+    targetfun= "com.cysion:targetfun:1.1.0"
+    otherLibs = [glide,statusbar,logger,eventbus,targetfun]
 }

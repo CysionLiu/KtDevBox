@@ -5,10 +5,11 @@ import android.content.Context
 
 /**
  * 全局变量
+ * 在application里就要init
  */
 @SuppressLint("StaticFieldLeak")
 object Box {
-    var hasInited = false
+    private var hasInited = false
     lateinit var context: Context
         private set
     var debug = false
