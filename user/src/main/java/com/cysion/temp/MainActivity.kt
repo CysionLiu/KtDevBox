@@ -6,7 +6,6 @@ import com.cysion.ktbox.Box
 import com.cysion.ktbox.base.BaseActivity
 import com.cysion.ktbox.net.BaseCaller
 import com.cysion.ktbox.utils.RxTransformer
-import com.cysion.ktbox.utils.logd
 import com.cysion.ktbox.utils.logi
 import com.cysion.targetfun._subscribe
 import io.reactivex.Observable
@@ -18,7 +17,7 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
         Box.init(self.applicationContext, true)
-        tvShow.setOnClickListener {
+        tvShow.setOnClickListener { v ->
             shortTip("hello KtDevBox")
             Caller.init()
             Caller.api.test().compose(RxTransformer.mainIo())
