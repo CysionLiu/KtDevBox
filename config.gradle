@@ -49,5 +49,6 @@ ext {
     logger = "com.orhanobut:logger:2.2.0"
     eventbus = "org.greenrobot:eventbus:3.1.1"
     targetfun= "com.cysion:targetfun:1.1.0"
-    otherLibs = [glide,statusbar,logger,eventbus,targetfun]
+    appjoint= "io.github.prototypez:app-joint-core:1.5"
+    otherLibs = [glide,statusbar,logger,eventbus,targetfun,appjoint]
 }

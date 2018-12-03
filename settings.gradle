@@ -1,1 +1,1 @@
-include ':user', ':ktbox', ':uibox', ':media', ':shell', ':router'
+include ':ktbox', ':uibox', ':media', ':shell', ':router', ':usercenter'

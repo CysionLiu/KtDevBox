@@ -19,23 +19,16 @@ abstract class BaseAdapter<T : Any>(
     }
 
     fun addEntities(aEntities: MutableList<T>) {
-        if (mEntities != null) {
-            mEntities.addAll(aEntities)
-        } else {
-            mEntities = aEntities
-        }
+        mEntities.addAll(aEntities)
         notifyDataSetChanged()
     }
 
     fun setEntities(aEntities: MutableList<T>) {
-        if (mEntities != null) {
-            mEntities.clear()
-            mEntities.addAll(aEntities)
-        } else {
-            mEntities = aEntities
-        }
+        mEntities.clear()
+        mEntities.addAll(aEntities)
         notifyDataSetChanged()
     }
+
     override abstract fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T>
 }
 
