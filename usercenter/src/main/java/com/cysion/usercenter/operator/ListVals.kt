@@ -2,15 +2,18 @@ package com.cysion.usercenter.operator
 
 import android.support.v4.app.Fragment
 import com.cysion.usercenter.R
+import com.cysion.usercenter.comm.Resolver
+import com.cysion.usercenter.ui.fragment.SquareFragment
+import com.cysion.usercenter.ui.fragment.UserFragment
 import java.util.*
 
 object ListVals {
     fun getFragments(): MutableList<Fragment> {
         val fragmentArrayList = ArrayList<Fragment>()
-        fragmentArrayList.add(Fragment())
-        fragmentArrayList.add(Fragment())
-        fragmentArrayList.add(Fragment())
-        fragmentArrayList.add(Fragment())
+        fragmentArrayList.add(SquareFragment())
+        fragmentArrayList.add(Resolver.mediaFragmentApi.createAudioFragment())
+        fragmentArrayList.add(Resolver.mediaFragmentApi.createVideoFragment())
+        fragmentArrayList.add(UserFragment())
         return fragmentArrayList
     }
 
