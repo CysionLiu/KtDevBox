@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--header-->
+    <dimen name="header1">20dp</dimen>
+    <dimen name="header2">18dp</dimen>
+    <dimen name="header3">16dp</dimen>
+
+    <!--text-->
+    <dimen name="text_main">14dp</dimen>
+    <dimen name="text_large">16dp</dimen>
+    <dimen name="text_larger">18dp</dimen>
+    <dimen name="text_small">12dp</dimen>
+    <dimen name="text_smaller">9dp</dimen>
+
+    <!--space-->
+    <dimen name="space_main">20dp</dimen>
+    <dimen name="space_large">24dp</dimen>
+    <dimen name="space_larger">32dp</dimen>
+    <dimen name="space_largest">40dp</dimen>
+    <dimen name="space_small">12dp</dimen>
+    <dimen name="space_smaller">8dp</dimen>
+    <dimen name="space_smallest">4dp</dimen>
+
+    <!--bar-->
+    <dimen name="topbar">36dp</dimen>
+    <dimen name="topbar_small">30dp</dimen>
+    <dimen name="topbar_large">41dp</dimen>
+    <dimen name="topbar_larger">48dp</dimen>
+    <dimen name="bottom_bar">47dp</dimen>
+
+    <!--image-->
+    <dimen name="image">120dp</dimen>
+    <dimen name="image_s">100dp</dimen>
+    <dimen name="image_ss">80dp</dimen>
+    <dimen name="image_sss">60dp</dimen>
+    <dimen name="image_b">140dp</dimen>
+    <dimen name="image_bb">160dp</dimen>
+
+    <!--icon-->
+    <dimen name="icon">28dp</dimen>
+    <dimen name="icon_s">24dp</dimen>
+    <dimen name="icon_ss">21dp</dimen>
+    <dimen name="icon_b">32dp</dimen>
+    <dimen name="icon_bb">36dp</dimen>
+    <dimen name="icon_bbb">46dp</dimen>
+
+</resources>
