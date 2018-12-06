@@ -1,7 +1,7 @@
 package com.cysion.media.presenter
 
 import com.cysion.ktbox.base.BasePresenter
-import com.cysion.ktbox.utils.RxTransformer
+import com.cysion.media.entity.RxTransformer2
 import com.cysion.media.net.MediaCaller
 import com.cysion.media.net.NetEventType
 import com.cysion.media.ui.iview.MediaView
@@ -12,14 +12,10 @@ class MediaPresenter : BasePresenter<MediaView>() {
 
     fun getNewsList() {
         MediaCaller.api.getNewList()
-            .compose(RxTransformer.mainIo())
+            .compose(RxTransformer2.mainIo())
             ._subscribe {
                 _onNext {
-                    if (it.code != 200) {
-                        error(it.code, it.msg, NetEventType.GET_NEWS_LIST)
-                    } else {
-                        attchedView?.setNewsList(it.data)
-                    }
+                        attchedView?.setNewsList(it)
                 }
                 _onError {
                     error(500, it.message!!, NetEventType.GET_NEWS_LIST)
