@@ -7,7 +7,7 @@ open class BasePresenter<V : IView> {
     var attchedView: V? = null
         private set
 
-    private val compositeDisposable = CompositeDisposable()
+    protected val compositeDisposable = CompositeDisposable()
 
     fun attach(v: V) {
         attchedView = v

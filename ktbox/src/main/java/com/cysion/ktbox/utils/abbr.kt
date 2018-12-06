@@ -27,6 +27,11 @@ fun logi(msg: String) {
         Log.i(TAG, msg)
     }
 }
+fun logw(msg: String) {
+    if (Box.debug) {
+        Log.i(TAG, msg)
+    }
+}
 //color-状态栏背景颜色
 fun Activity.whiteTextTheme(@ColorInt color: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

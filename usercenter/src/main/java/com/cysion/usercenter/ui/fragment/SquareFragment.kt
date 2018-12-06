@@ -14,6 +14,6 @@ class SquareFragment: BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return TextView(activity).apply { text="广场" }
+        return TextView(context).apply { text="广场" }
     }
 }

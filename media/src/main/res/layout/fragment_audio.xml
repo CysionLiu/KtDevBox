@@ -5,8 +5,9 @@
               android:layout_height="match_parent">
 
     <Button
+            android:id="@+id/btnGetNews"
             android:layout_width="wrap_content"
-            android:text="音频"
+            android:text="新闻"
             android:layout_height="wrap_content"/>
 
 

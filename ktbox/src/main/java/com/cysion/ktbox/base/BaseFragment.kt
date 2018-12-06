@@ -15,12 +15,20 @@ import org.greenrobot.eventbus.ThreadMode
 abstract class BaseFragment : Fragment() {
 
     var mEverLoaded = false
+
+    val context by lazy {
+        getActivity()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         EventBus.getDefault().register(this)
-        val root = inflater.inflate(getLayoutId(), container, false)
+        return inflater.inflate(getLayoutId(), container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
         initData()
-        return root
     }
 
     override fun onDestroyView() {
