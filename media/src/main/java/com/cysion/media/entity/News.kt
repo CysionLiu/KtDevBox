@@ -2,10 +2,10 @@ package com.cysion.media.entity
 
 
 data class Data(
-    val tech: List<NewsInfo>?,
-    val auto: List<NewsInfo>?,
-    val money: List<NewsInfo>?,
-    val sports: List<NewsInfo>?, val dy: List<NewsInfo>?
+    val tech: MutableList<NewsInfo>?,
+    val auto: MutableList<NewsInfo>?,
+    val money: MutableList<NewsInfo>?,
+    val sports: MutableList<NewsInfo>?, val dy: MutableList<NewsInfo>?
 )
 
 data class NewsInfo(

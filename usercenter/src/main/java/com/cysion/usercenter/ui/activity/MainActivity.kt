@@ -21,7 +21,6 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {
         super.initData()
-
         mFragments = ListVals.getFragments()
         mTitles = ListVals.getTitles()
         vpContent.adapter = BaseFragmentAdapter(this.supportFragmentManager, mFragments, mTitles)

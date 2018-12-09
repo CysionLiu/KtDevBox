@@ -16,8 +16,8 @@ abstract class BaseViewHolder<T : Any>(itemView: View) : RecyclerView.ViewHolder
         mContext = aContext
         itemView.setOnClickListener {
             mOnTypeClickListener.onTypeClicked(obj, position, ITEM_CLICK)
-            fillData(obj, position)
         }
+        fillData(obj, position)
     }
 
     protected abstract fun fillData(obj: T, position: Int)

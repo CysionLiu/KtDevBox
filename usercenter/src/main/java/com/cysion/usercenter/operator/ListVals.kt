@@ -11,7 +11,7 @@ object ListVals {
     fun getFragments(): MutableList<Fragment> {
         val fragmentArrayList = ArrayList<Fragment>()
         fragmentArrayList.add(SquareFragment())
-        fragmentArrayList.add(Resolver.mediaFragmentApi.createAudioFragment())
+        fragmentArrayList.add(Resolver.mediaFragmentApi.createNewsFragment())
         fragmentArrayList.add(Resolver.mediaFragmentApi.createVideoFragment())
         fragmentArrayList.add(UserFragment())
         return fragmentArrayList

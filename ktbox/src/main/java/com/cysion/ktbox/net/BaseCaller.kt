@@ -57,7 +57,7 @@ abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>) {
 
     inline fun <reified T> loadApi(): T {
         if (!hasInited) {
-            throw Exception("One caller should invoke before loadApi")
+            throw Exception("One caller should invoke init() before loadApi")
         }
         return mRetrofit.create(T::class.java)
     }

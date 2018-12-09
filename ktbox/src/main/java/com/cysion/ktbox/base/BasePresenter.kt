@@ -1,6 +1,7 @@
 package com.cysion.ktbox.base
 
 import com.cysion.ktbox.listener.IView
+import com.cysion.ktbox.net.ApiException
 import io.reactivex.disposables.CompositeDisposable
 
 open class BasePresenter<V : IView> {
@@ -18,8 +19,8 @@ open class BasePresenter<V : IView> {
         compositeDisposable.clear()
     }
 
-    fun error(code: Int, msg: String, event: Int) {
-        attchedView?.error(code, msg, event)
+    fun error(error:ApiException) {
+        attchedView?.error(error.errorCode, error.errorMsg)
     }
 
     fun checkViewAttached() {

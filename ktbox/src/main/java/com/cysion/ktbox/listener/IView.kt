@@ -9,7 +9,7 @@ interface IView {
     fun stopLoad()
 
     /*
-    code错误码；msg错误信息;event事件
+    code错误码；msg错误信息;
      */
-    fun error(code: Int, msg: String, event: Int)
+    fun error(code: Int, msg: String)
 }

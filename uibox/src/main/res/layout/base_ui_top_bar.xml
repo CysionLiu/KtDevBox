@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="42dp"
+              android:background="@color/colorAccent"
+              android:orientation="horizontal"
+              android:paddingLeft="3dp"
+              android:paddingRight="3dp">
+
+    <FrameLayout
+            android:id="@+id/flayoutLeft"
+            android:padding="2dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp">
+
+        <ImageView
+                android:id="@+id/ivLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@mipmap/back_white"
+                />
+
+        <TextView
+                android:id="@+id/tvLeft"
+                android:gravity="center"
+                android:textColor="@color/gray__"
+
+                android:text="关闭"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <View
+            android:layout_width="30dp"
+            android:layout_height="match_parent"></View>
+
+    <FrameLayout
+            android:id="@+id/flayoutCenter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text=""
+                android:textColor="@color/gray__"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:text="标题"/>
+
+        <ImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/ivCenter"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+    </FrameLayout>
+    <View
+            android:layout_width="30dp"
+            android:layout_height="match_parent"></View>
+    <FrameLayout
+            android:id="@+id/flayoutRight"
+            android:padding="2dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp">
+
+        <ImageView
+                android:id="@+id/ivRight"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                />
+
+        <TextView
+                android:id="@+id/tvRight"
+                android:textColor="@color/gray__"
+                android:gravity="center"
+                tools:text="关闭"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </FrameLayout>
+
+</LinearLayout>
