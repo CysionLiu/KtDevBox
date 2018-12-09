@@ -6,12 +6,17 @@ import android.view.ViewGroup
 import com.cysion.ktbox.listener.OnTypeClickListener
 
 abstract class BaseAdapter<T : Any>(
-    var mEntities: MutableList<T>, var mContext: Context,
-    var mOnTypeClickListener: OnTypeClickListener
+    var mEntities: MutableList<T>, var mContext: Context
 ) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
+    var mOnTypeClickListener: OnTypeClickListener? = null
     override fun getItemCount(): Int {
         return mEntities.size
+    }
+
+    fun setOnTypeClickListener(aListener: OnTypeClickListener) {
+        mOnTypeClickListener = aListener
+
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {

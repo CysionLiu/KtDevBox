@@ -9,13 +9,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.cysion.ktbox.base.BaseAdapter
 import com.cysion.ktbox.base.BaseViewHolder
 import com.cysion.ktbox.image.RoundTransform
-import com.cysion.ktbox.listener.OnTypeClickListener
 import com.cysion.media.R
 import com.cysion.media.entity.NewsInfo
 import kotlinx.android.synthetic.main.item_news_list.view.*
 
-class NewsAdapter(mEntities: MutableList<NewsInfo>, mContext: Context, mOnTypeClickListener: OnTypeClickListener) :
-    BaseAdapter<NewsInfo>(mEntities, mContext, mOnTypeClickListener) {
+class NewsAdapter(mEntities: MutableList<NewsInfo>, mContext: Context) :
+    BaseAdapter<NewsInfo>(mEntities, mContext) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<NewsInfo> {
         return NewsInnerHolder(LayoutInflater.from(mContext).inflate(R.layout.item_news_list, parent, false))
     }

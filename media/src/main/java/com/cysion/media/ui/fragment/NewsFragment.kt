@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.Button
 import com.cysion.ktbox.base.BaseFragment
 import com.cysion.ktbox.base.ITEM_CLICK
-import com.cysion.ktbox.listener.OnTypeClickListener
 import com.cysion.ktbox.utils.logd
 import com.cysion.media.R
 import com.cysion.media.adapter.NewsAdapter
@@ -18,7 +17,7 @@ import com.cysion.media.ui.iview.MediaView
 import com.cysion.other.startActivity_ex
 import kotlinx.android.synthetic.main.fragment_audio.*
 
-class NewsFragment : BaseFragment(), MediaView, OnTypeClickListener {
+class NewsFragment : BaseFragment(), MediaView {
 
     override fun getLayoutId(): Int = R.layout.fragment_audio
     private var mdatalist: MutableList<NewsInfo> = mutableListOf()
@@ -27,12 +26,21 @@ class NewsFragment : BaseFragment(), MediaView, OnTypeClickListener {
     }
 
     val adapter by lazy {
-        NewsAdapter(mdatalist, activity as Context, this)
+        NewsAdapter(mdatalist, activity as Context)
     }
 
     override fun initView() {
         rvNewsList.layoutManager = LinearLayoutManager(activity)
         rvNewsList.adapter = adapter
+        adapter.setOnTypeClickListener { obj, position, flag ->
+            if (flag == ITEM_CLICK) {
+                obj as NewsInfo
+                val bundle = Bundle()
+                bundle.putString("title", obj.title)
+                bundle.putString("link", obj.link)
+                context?.startActivity_ex<NewsDetailActivity>("key", bundle)
+            }
+        }
     }
 
     override fun lazyLoad() {
@@ -61,15 +69,4 @@ class NewsFragment : BaseFragment(), MediaView, OnTypeClickListener {
     override fun error(code: Int, msg: String) {
         logd("$code,$msg")
     }
-
-    override fun onTypeClicked(obj: Any, position: Int, flag: Int) {
-        if (flag == ITEM_CLICK) {
-            obj as NewsInfo
-            val bundle = Bundle()
-            bundle.putString("title", obj.title)
-            bundle.putString("link", obj.link)
-            context?.startActivity_ex<NewsDetailActivity>("key", bundle)
-        }
-    }
-
 }
