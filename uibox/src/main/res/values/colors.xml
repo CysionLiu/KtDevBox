@@ -7,6 +7,8 @@
 
     <!--background-->
     <color name="white">#ffFFFFFF</color>
+    <color name="dark">#ff000000</color>
+    <color name="tran_dark">#99000000</color>
     <color name="gray">#ffcccccc</color>
     <color name="gray__">#fff7f7f7</color>
     <color name="gray_">#ffe5e5e5</color>
@@ -18,6 +20,7 @@
     <color name="light_text">#ff999999</color>
     <color name="min_text">#ffC8C8C8</color>
     <color name="red_text">#fffc3733</color>
+    <color name="yellow_text">#ffffff00</color>
 
     <!--tag-->
     <color name="main_tag">#fff66926</color>

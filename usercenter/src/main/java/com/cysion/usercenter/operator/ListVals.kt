@@ -29,8 +29,8 @@ object ListVals {
     fun getTitles(): MutableList<String> {
         val strings = ArrayList<String>()
         strings.add("广场")
-        strings.add("音频")
-        strings.add("视频")
+        strings.add("新闻")
+        strings.add("电台")
         strings.add("我的")
         return strings
     }

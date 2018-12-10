@@ -13,13 +13,13 @@ import com.cysion.media.entity.Data
 import com.cysion.media.entity.NewsInfo
 import com.cysion.media.presenter.NewsPresenter
 import com.cysion.media.ui.activity.NewsDetailActivity
-import com.cysion.media.ui.iview.MediaView
+import com.cysion.media.ui.iview.NewsView
 import com.cysion.other.startActivity_ex
-import kotlinx.android.synthetic.main.fragment_audio.*
+import kotlinx.android.synthetic.main.fragment_news.*
 
-class NewsFragment : BaseFragment(), MediaView {
+class NewsFragment : BaseFragment(), NewsView {
 
-    override fun getLayoutId(): Int = R.layout.fragment_audio
+    override fun getLayoutId(): Int = R.layout.fragment_news
     private var mdatalist: MutableList<NewsInfo> = mutableListOf()
     private val presenter by lazy {
         NewsPresenter().apply { attach(this@NewsFragment) }

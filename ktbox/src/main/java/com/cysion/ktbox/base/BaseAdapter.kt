@@ -38,4 +38,5 @@ abstract class BaseAdapter<T : Any>(
 }
 
 //条目单击事件，
-val ITEM_CLICK = -100000
+const val ITEM_CLICK = -100000
+const val ITEM_LONG_CLICK = -100001

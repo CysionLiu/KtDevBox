@@ -10,6 +10,7 @@
     <dimen name="text_main">14dp</dimen>
     <dimen name="text_large">16dp</dimen>
     <dimen name="text_larger">18dp</dimen>
+    <dimen name="text_largerx">22dp</dimen>
     <dimen name="text_small">12dp</dimen>
     <dimen name="text_smaller">9dp</dimen>
 

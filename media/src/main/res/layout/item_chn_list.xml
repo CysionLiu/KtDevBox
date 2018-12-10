@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:orientation="vertical"
+             android:padding="3dp"
+             android:background="@color/dark"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+    <ImageView
+            android:adjustViewBounds="true"
+            android:id="@+id/ivChannel"
+            android:layout_width="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/tvMainChannel"
+            android:background="@color/tran_dark"
+            android:textColor="@color/white"
+            tools:text="主频道"
+            android:textSize="@dimen/text_smaller"
+            android:layout_marginTop="20dp"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/tvSpec"
+            android:layout_gravity="center"
+            android:textColor="@color/yellow_text"
+            android:background="@color/tran_dark"
+            android:gravity="center"
+            tools:text="这是标题"
+            android:textSize="@dimen/text_larger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</FrameLayout>

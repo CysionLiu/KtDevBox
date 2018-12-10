@@ -91,4 +91,8 @@
                 android:layout_height="40dp"/>
     </RelativeLayout>
 
+    <View
+            android:background="@color/tran_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></View>
 </LinearLayout>

@@ -24,19 +24,22 @@ class NewsAdapter(mEntities: MutableList<NewsInfo>, mContext: Context) :
 class NewsInnerHolder(itemView: View) : BaseViewHolder<NewsInfo>(itemView) {
 
     override fun fillData(obj: NewsInfo, position: Int) {
-       itemView?.apply {
-           tvCate.text=obj.category
-           tvTag.text=obj.source
-           tvTitle.text=obj.title
-           tvContent.text=obj.digest
-           tvTime.text=obj.ptime
-           if (obj.picInfo != null&&obj.picInfo.size>0) {
-               Glide.with(context)
-                   .applyDefaultRequestOptions(RequestOptions.bitmapTransform(RoundTransform(12)))
-                   .load(obj.picInfo?.get(0)?.url)
-                   .into(ivCoverView)
-           }
-       }
+        itemView?.apply {
+            tvCate.text = obj.category
+            tvTag.text = obj.source
+            tvTitle.text = obj.title
+            tvContent.text = obj.digest
+            tvTime.text = obj.ptime
+            if (obj.picInfo != null && obj.picInfo.size > 0) {
+                Glide.with(context)
+                    .load(obj.picInfo?.get(0)?.url)
+                    .apply(RequestOptions.bitmapTransform(RoundTransform(12)))
+                    .into(ivCoverView)
+                ivCoverView.visibility = View.VISIBLE
+            } else {
+                ivCoverView.visibility = View.GONE
+            }
+        }
     }
 }
 
