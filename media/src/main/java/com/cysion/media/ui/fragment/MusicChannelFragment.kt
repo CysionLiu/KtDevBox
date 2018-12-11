@@ -25,7 +25,7 @@ class MusicChannelFragment : BaseFragment(), ChnView {
     override fun getLayoutId(): Int = R.layout.fragment_music_chn
 
     override fun initView() {
-        rvChnList.layoutManager = GridLayoutManager(context,2)
+        rvChnList.layoutManager = GridLayoutManager(context, 2)
         rvChnList.adapter = adapter
         adapter.setOnTypeClickListener { obj, position, flag ->
         }
@@ -50,5 +50,9 @@ class MusicChannelFragment : BaseFragment(), ChnView {
 
     override fun error(code: Int, msg: String) {
         context?.tos("$code,$msg")
+    }
+
+    override fun closeMvp() {
+        presenter.detach()
     }
 }

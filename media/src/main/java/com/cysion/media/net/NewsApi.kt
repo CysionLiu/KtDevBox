@@ -2,7 +2,7 @@ package com.cysion.media.net
 
 import com.cysion.ktbox.net.BaseCaller
 import com.cysion.ktbox.net.BaseResponse
-import com.cysion.media.constant.SERVER_NEWS
+import com.cysion.media.constant.Urls.SERVER_NEWS
 import com.cysion.media.entity.Data
 import io.reactivex.Observable
 import retrofit2.http.GET

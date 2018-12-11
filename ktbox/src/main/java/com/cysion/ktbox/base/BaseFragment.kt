@@ -34,7 +34,9 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         EventBus.getDefault().unregister(this)
+        closeMvp()
     }
+
 
     //仅用来声明默认接收方法的，实际不应该接收任何消息；子类仿照该方法，自定义事件即可
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -83,6 +85,8 @@ abstract class BaseFragment : Fragment() {
     abstract fun getLayoutId(): Int
 
     abstract fun initView()
+
+    abstract fun closeMvp()
 
     protected open fun initData() {
     }

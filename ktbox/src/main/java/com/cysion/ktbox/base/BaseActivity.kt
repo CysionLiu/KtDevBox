@@ -26,7 +26,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         EventBus.getDefault().unregister(this)
+        closeMvp()
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun fromEventbus(app: Application) {
@@ -37,6 +39,8 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getLayoutId(): Int
 
     abstract fun initView()
+
+    abstract fun closeMvp()
 
     protected open fun initData() {
     }

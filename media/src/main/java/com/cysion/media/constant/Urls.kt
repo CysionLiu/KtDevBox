@@ -1,4 +1,21 @@
 package com.cysion.media.constant
 
-const val SERVER_NEWS = "https://www.apiopen.top/"
-const val SERVER_CHNS = "https://api.apiopen.top/"
+object Urls {
+    private var hasInited = false
+    var debug: Boolean = true
+        set(value) {
+            if (!hasInited) {
+                field = value
+                hasInited = true
+            }else{
+                throw Exception("不能两次初始化")
+            }
+        }
+
+    val SERVER_NEWS by lazy {
+       if(debug)"https://www.apiopen.top/" else "https://www.apiopen.top/"
+    }
+    val SERVER_CHNS by lazy {
+       if(debug)"https://api.apiopen.top/" else "https://api.apiopen.top/"
+    }
+}

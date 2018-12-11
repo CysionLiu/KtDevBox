@@ -29,7 +29,6 @@ class NewsDetailActivity : BaseActivity() {
                     finish()
                 }
             }
-
         }
         webview.settings.javaScriptEnabled = true
         webview.webViewClient = object : WebViewClient() {
@@ -39,5 +38,8 @@ class NewsDetailActivity : BaseActivity() {
             }
         }
         webview.loadUrl(linkurl)
+    }
+    override fun closeMvp() {
+
     }
 }

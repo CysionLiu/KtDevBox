@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_news.*
 
 class NewsFragment : BaseFragment(), NewsView {
 
+
     override fun getLayoutId(): Int = R.layout.fragment_news
     private var mdatalist: MutableList<NewsInfo> = mutableListOf()
     private val presenter by lazy {
@@ -68,5 +69,9 @@ class NewsFragment : BaseFragment(), NewsView {
 
     override fun error(code: Int, msg: String) {
         logd("$code,$msg")
+    }
+
+    override fun closeMvp() {
+        presenter.detach()
     }
 }

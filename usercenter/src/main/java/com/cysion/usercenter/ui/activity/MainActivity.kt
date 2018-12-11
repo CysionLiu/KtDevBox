@@ -36,5 +36,8 @@ class MainActivity : BaseActivity() {
             tablayout.getTabAt(i)!!.setCustomView(R.layout.tabmain_item)
         }
     }
+    override fun closeMvp() {
+
+    }
 }
 

@@ -8,6 +8,8 @@ import android.widget.TextView
 import com.cysion.ktbox.base.BaseFragment
 
 class SquareFragment: BaseFragment() {
+
+
     override fun getLayoutId(): Int =0
 
     override fun initView() {
@@ -15,5 +17,8 @@ class SquareFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return TextView(context).apply { text="广场" }
+    }
+
+    override fun closeMvp() {
     }
 }
