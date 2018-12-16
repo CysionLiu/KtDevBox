@@ -5,6 +5,8 @@
     <application>
         <activity android:name=".ui.activity.NewsDetailActivity">
         </activity>
+        <activity android:name=".ui.activity.ChannelDetailActivity">
+        </activity>
     </application>
 
 </manifest>

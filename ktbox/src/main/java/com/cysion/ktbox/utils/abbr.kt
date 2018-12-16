@@ -3,13 +3,13 @@ package com.cysion.ktbox.utils
 import android.app.Activity
 import android.os.Build
 import android.support.annotation.ColorInt
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.AdapterView
 import com.cysion.ktbox.Box
 import com.jaeger.library.StatusBarUtil
+import com.orhanobut.logger.Logger
 
 /**
  * 简略打印
@@ -18,18 +18,18 @@ val TAG = "ktDevBox"
 
 fun logd(msg: String) {
     if (Box.debug) {
-        Log.d(TAG, msg)
+        Logger.d(TAG, msg)
     }
 }
 
 fun logi(msg: String) {
     if (Box.debug) {
-        Log.i(TAG, msg)
+        Logger.i(TAG, msg)
     }
 }
 fun logw(msg: String) {
     if (Box.debug) {
-        Log.i(TAG, msg)
+        Logger.w(TAG, msg)
     }
 }
 //color-状态栏背景颜色

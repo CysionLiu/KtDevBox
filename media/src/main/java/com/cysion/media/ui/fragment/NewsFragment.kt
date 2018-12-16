@@ -9,6 +9,9 @@ import com.cysion.ktbox.base.ITEM_CLICK
 import com.cysion.ktbox.utils.logd
 import com.cysion.media.R
 import com.cysion.media.adapter.NewsAdapter
+import com.cysion.media.constant.BUNDLE_KEY
+import com.cysion.media.constant.LINK
+import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.Data
 import com.cysion.media.entity.NewsInfo
 import com.cysion.media.presenter.NewsPresenter
@@ -37,9 +40,9 @@ class NewsFragment : BaseFragment(), NewsView {
             if (flag == ITEM_CLICK) {
                 obj as NewsInfo
                 val bundle = Bundle()
-                bundle.putString("title", obj.title)
-                bundle.putString("link", obj.link)
-                context?.startActivity_ex<NewsDetailActivity>("key", bundle)
+                bundle.putString(TITLE, obj.title)
+                bundle.putString(LINK, obj.link)
+                context?.startActivity_ex<NewsDetailActivity>(BUNDLE_KEY, bundle)
             }
         }
     }

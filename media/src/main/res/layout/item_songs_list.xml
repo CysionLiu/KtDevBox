@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_margin="3dp"
+              android:background="@color/gray__"
+              android:layout_width="match_parent"
+              android:layout_height="80dp">
+
+    <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/ivThumb"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+        <TextView
+                tools:text="歌名"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:id="@+id/tvSongName"
+                android:textColor="@color/main_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/tvAuthor"
+                tools:text="作家"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_below="@id/tvSongName"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/gray_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -4,6 +4,8 @@ import android.app.Application
 import com.cysion.ktbox.utils.logd
 import com.cysion.media.constant.Urls
 import com.cysion.media.net.ChannelCaller
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import io.github.prototypez.appjoint.core.ModuleSpec
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -21,5 +23,6 @@ class MediaApplication : Application() {
             }
         }).init()
         logd(Urls.SERVER_NEWS)
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
 }

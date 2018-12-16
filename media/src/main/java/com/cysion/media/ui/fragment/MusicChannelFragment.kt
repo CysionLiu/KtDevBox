@@ -1,14 +1,21 @@
 package com.cysion.media.ui.fragment
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.cysion.ktbox.base.BaseFragment
+import com.cysion.ktbox.base.ITEM_CLICK
 import com.cysion.media.R
 import com.cysion.media.adapter.MusicChnAdapter
+import com.cysion.media.constant.BUNDLE_KEY
+import com.cysion.media.constant.CHANNEL_NAME
+import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.ChannelInfo
 import com.cysion.media.extension.tos
 import com.cysion.media.presenter.ChnPresenter
+import com.cysion.media.ui.activity.ChannelDetailActivity
 import com.cysion.media.ui.iview.ChnView
+import com.cysion.other.startActivity_ex
 import kotlinx.android.synthetic.main.fragment_music_chn.*
 
 class MusicChannelFragment : BaseFragment(), ChnView {
@@ -28,6 +35,13 @@ class MusicChannelFragment : BaseFragment(), ChnView {
         rvChnList.layoutManager = GridLayoutManager(context, 2)
         rvChnList.adapter = adapter
         adapter.setOnTypeClickListener { obj, position, flag ->
+            if (flag == ITEM_CLICK) {
+                obj as ChannelInfo
+                val bundle = Bundle()
+                bundle.putString(TITLE, obj.name)
+                bundle.putString(CHANNEL_NAME, obj.ch_name)
+                context?.startActivity_ex<ChannelDetailActivity>(BUNDLE_KEY, bundle)
+            }
         }
     }
 
