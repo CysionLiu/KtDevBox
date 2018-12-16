@@ -17,11 +17,12 @@ abstract class BaseFragment : Fragment() {
     var mEverLoaded = false
 
     val context by lazy {
-        getActivity()
+        getActivity()!!
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         EventBus.getDefault().register(this)
+        context.hasWindowFocus()//此时初始化context指向activity；可避免getActivity的空指针，即使fragment被回收
         return inflater.inflate(getLayoutId(), container, false)
     }
 

@@ -24,6 +24,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.supportLibs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api ('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
+        transitive = true
+        exclude group: 'com.android.support'
+    }
+
 }
 repositories {
     mavenCentral()

@@ -18,18 +18,18 @@ val TAG = "ktDevBox"
 
 fun logd(msg: String) {
     if (Box.debug) {
-        Logger.d(TAG, msg)
+        Logger.d(msg)
     }
 }
 
 fun logi(msg: String) {
     if (Box.debug) {
-        Logger.i(TAG, msg)
+        Logger.i(msg)
     }
 }
 fun logw(msg: String) {
     if (Box.debug) {
-        Logger.w(TAG, msg)
+        Logger.w(msg)
     }
 }
 //color-状态栏背景颜色
