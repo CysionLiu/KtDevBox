@@ -9,12 +9,12 @@ abstract class BaseAdapter<T : Any>(
     var mEntities: MutableList<T>, var mContext: Context
 ) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
-    var mOnTypeClickListener: OnTypeClickListener? = null
+    var mOnTypeClickListener: OnTypeClickListener<T>? = null
     override fun getItemCount(): Int {
         return mEntities.size
     }
 
-    fun setOnTypeClickListener(aListener: OnTypeClickListener) {
+    fun setOnTypeClickListener(aListener: OnTypeClickListener<T>) {
         mOnTypeClickListener = aListener
 
     }

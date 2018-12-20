@@ -5,6 +5,6 @@ import android.support.v4.app.Fragment
 interface FragmentApi {
 
     fun createNewsFragment():Fragment
-    fun createVideoFragment():Fragment
+    fun createMusicFragment():Fragment
 
 }

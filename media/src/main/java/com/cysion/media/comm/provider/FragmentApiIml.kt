@@ -12,7 +12,7 @@ class FragmentApiIml:FragmentApi {
         return NewsFragment()
     }
 
-    override fun createVideoFragment():Fragment {
+    override fun createMusicFragment():Fragment {
         return MusicChannelFragment()
     }
 

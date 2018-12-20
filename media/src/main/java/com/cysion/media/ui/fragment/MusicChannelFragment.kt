@@ -36,7 +36,6 @@ class MusicChannelFragment : BaseFragment(), ChnView {
         rvChnList.adapter = adapter
         adapter.setOnTypeClickListener { obj, position, flag ->
             if (flag == ITEM_CLICK) {
-                obj as ChannelInfo
                 val bundle = Bundle()
                 bundle.putString(TITLE, obj.name)
                 bundle.putString(CHANNEL_NAME, obj.ch_name)

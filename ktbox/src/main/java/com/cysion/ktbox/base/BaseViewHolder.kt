@@ -8,10 +8,10 @@ import com.cysion.ktbox.listener.OnTypeClickListener
 abstract class BaseViewHolder<T : Any>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var mPageType: String? = null
-    protected var mOnTypeClickListener: OnTypeClickListener? = null
+    protected var mOnTypeClickListener: OnTypeClickListener<T>? = null
     protected lateinit var mContext: Context
 
-    fun bindData(aContext: Context, aOnTypeClickListener: OnTypeClickListener?, obj: T, position: Int) {
+    fun bindData(aContext: Context, aOnTypeClickListener: OnTypeClickListener<T>?, obj: T, position: Int) {
         mOnTypeClickListener = aOnTypeClickListener
         mContext = aContext
         itemView.setOnClickListener {

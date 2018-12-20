@@ -12,7 +12,7 @@ object ListVals {
         val fragmentArrayList = ArrayList<Fragment>()
         fragmentArrayList.add(SquareFragment())
         fragmentArrayList.add(Resolver.mediaFragmentApi.createNewsFragment())
-        fragmentArrayList.add(Resolver.mediaFragmentApi.createVideoFragment())
+        fragmentArrayList.add(Resolver.mediaFragmentApi.createMusicFragment())
         fragmentArrayList.add(UserFragment())
         return fragmentArrayList
     }

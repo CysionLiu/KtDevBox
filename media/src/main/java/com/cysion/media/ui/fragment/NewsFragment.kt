@@ -38,7 +38,6 @@ class NewsFragment : BaseFragment(), NewsView {
         rvNewsList.adapter = adapter
         adapter.setOnTypeClickListener { obj, position, flag ->
             if (flag == ITEM_CLICK) {
-                obj as NewsInfo
                 val bundle = Bundle()
                 bundle.putString(TITLE, obj.title)
                 bundle.putString(LINK, obj.link)
