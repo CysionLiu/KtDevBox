@@ -33,6 +33,7 @@
             android:gravity="center"
             tools:text="这是标题"
             android:textSize="@dimen/text_larger"
-            android:layout_width="match_parent"
+            android:padding="4dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 </FrameLayout>

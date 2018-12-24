@@ -4,11 +4,11 @@ import android.support.v4.app.Fragment
 import com.cysion.ktbox.base.BaseActivity
 import com.cysion.ktbox.base.BaseFragmentAdapter
 import com.cysion.ktbox.utils.darkTextTheme
+import com.cysion.ktbox.utils.whiteTextTheme
 import com.cysion.other.color
 import com.cysion.targetfun._addOnPageChangeListener
 import com.cysion.usercenter.R
 import com.cysion.usercenter.operator.ListVals
-import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
     private lateinit var mTitles: MutableList<String>
 
     override fun initView() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(self, null)
+        darkTextTheme(color(R.color.white))
         vpContent.offscreenPageLimit = 4
     }
 
@@ -31,17 +31,15 @@ class MainActivity : BaseActivity() {
         vpContent._addOnPageChangeListener {
             _onPageSelected {
                 when (it) {
-                    0 -> {
-                        StatusBarUtil.setTranslucentForImageViewInFragment(self, null)
+                    2->{
+                        whiteTextTheme(color(R.color.dark))
                     }
                     else -> {
-                        StatusBarUtil.hideFakeStatusBarView(self)
                         darkTextTheme(color(R.color.white))
                     }
                 }
             }
         }
-        vpContent.currentItem = 0
     }
 
     //初始化tab，设置图标和自定义布局，注意顺序和某些语句。

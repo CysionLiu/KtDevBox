@@ -36,12 +36,19 @@ class NewsDetailActivity : BaseActivity() {
         webview.settings.javaScriptEnabled = true
         webview.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: String?): Boolean {
-                view?.loadUrl(request)
-                return true
+                request?.let {
+                    if (it.startsWith("http")) {
+                        view?.loadUrl(request)
+                        return true
+                    }
+                }
+                return false
+
             }
         }
         webview.loadUrl(linkurl)
     }
+
     override fun closeMvp() {
 
     }
