@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.AdapterView
 import com.cysion.ktbox.Box
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import com.jaeger.library.StatusBarUtil
 import com.orhanobut.logger.Logger
 
@@ -64,4 +67,8 @@ fun View.gc() {
         }
         view.removeAllViews()
     }
+}
+
+inline fun <reified T> Gson.fromjson(json: String): T {
+    return GsonBuilder().create().fromJson(json, object : TypeToken<T>() {}.type)
 }

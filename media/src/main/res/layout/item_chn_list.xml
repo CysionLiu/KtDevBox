@@ -11,7 +11,7 @@
             android:adjustViewBounds="true"
             android:id="@+id/ivChannel"
             android:layout_width="match_parent"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/place_holder"
             android:layout_height="wrap_content"/>
 
     <TextView

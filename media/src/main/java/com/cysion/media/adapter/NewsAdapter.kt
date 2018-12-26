@@ -33,6 +33,7 @@ class NewsInnerHolder(itemView: View) : BaseViewHolder<NewsInfo>(itemView) {
             if (obj.picInfo != null && obj.picInfo.size > 0) {
                 Glide.with(context)
                     .load(obj.picInfo?.get(0)?.url)
+                    .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
                     .apply(RequestOptions.bitmapTransform(RoundTransform(12)))
                     .into(ivCoverView)
                 ivCoverView.visibility = View.VISIBLE

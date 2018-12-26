@@ -11,13 +11,18 @@ class NewsPresenter : BasePresenter<NewsView>() {
 
     fun getNewsList() {
         checkViewAttached()
+        attchedView?.loading()
         MediaCaller.api.getNewList()
             .compose(validateToMain())
             ._subscribe {
                 _onNext {
-                    attchedView?.setNewsList(it)
+                    attchedView?.apply {
+                        setNewsList(it)
+                        stopLoad()
+                    }
                 }
                 _onError {
+                    attchedView?.stopLoad()
                     error(it)
                 }
             }.addTo(compositeDisposable)

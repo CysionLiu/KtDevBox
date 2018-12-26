@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.cysion.ktbox.base.BaseAdapter
 import com.cysion.ktbox.base.BaseViewHolder
 import com.cysion.media.R
@@ -24,7 +25,9 @@ class ChnInnerHolder(itemView: View) : BaseViewHolder<ChannelInfo>(itemView) {
         itemView.apply {
             tvMainChannel.text = obj.cate_sname
             tvSpec.text = obj.name
-            Glide.with(context).load(obj.thumb).into(ivChannel)
+            Glide.with(context).load(obj.thumb)
+                .apply(RequestOptions.placeholderOf(R.mipmap.place_holder))
+                .into(ivChannel)
         }
     }
 }

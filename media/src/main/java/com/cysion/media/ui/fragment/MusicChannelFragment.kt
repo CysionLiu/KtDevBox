@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.cysion.ktbox.base.BaseFragment
 import com.cysion.ktbox.base.ITEM_CLICK
+import com.cysion.ktbox.net.ErrorStatus
 import com.cysion.media.R
 import com.cysion.media.adapter.MusicChnAdapter
 import com.cysion.media.constant.BUNDLE_KEY
@@ -49,6 +50,13 @@ class MusicChannelFragment : BaseFragment(), ChnView {
         presenter.getChnList()
     }
 
+    override fun visibleAgain() {
+        super.visibleAgain()
+        if (mChannelList.size == 0) {
+            presenter.getChnList()
+        }
+    }
+
     override fun setChannels(datalist: MutableList<ChannelInfo>) {
         mChannelList.clear()
         mChannelList.addAll(datalist)
@@ -56,13 +64,21 @@ class MusicChannelFragment : BaseFragment(), ChnView {
     }
 
     override fun loading() {
+        multiView.showLoading()
     }
 
     override fun stopLoad() {
+        multiView.showContent()
     }
 
     override fun error(code: Int, msg: String) {
         context?.tos("$code,$msg")
+        if (mChannelList.size == 0) {
+            multiView.showEmpty()
+            if (code == ErrorStatus.NETWORK_ERROR) {
+                multiView.showNoNetwork()
+            }
+        }
     }
 
     override fun closeMvp() {

@@ -8,7 +8,7 @@ import com.cysion.ktbox.utils.whiteTextTheme
 import com.cysion.other.color
 import com.cysion.targetfun._addOnPageChangeListener
 import com.cysion.usercenter.R
-import com.cysion.usercenter.operator.ListVals
+import com.cysion.usercenter.helper.ListVals
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -33,6 +33,9 @@ class MainActivity : BaseActivity() {
                 when (it) {
                     2->{
                         whiteTextTheme(color(R.color.dark))
+                    }
+                    3->{
+                        whiteTextTheme(color(R.color.colorAccent))
                     }
                     else -> {
                         darkTextTheme(color(R.color.white))

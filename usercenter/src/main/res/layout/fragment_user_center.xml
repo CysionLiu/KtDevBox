@@ -1,13 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-            android:id="@+id/tvTitle"
-            android:textSize="20dp"
-            android:text="用户中心"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp">
+
+        <com.scwang.wave.MultiWaveHeader
+                android:id="@+id/waveHeader"
+                app:mwhIsRunning="false"
+                app:mwhStartColor="@color/colorAccent"
+                app:mwhCloseColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"/>
+
+        <ImageView
+                android:id="@+id/ivUserHead"
+                android:src="@mipmap/place_holder"
+                android:layout_width="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_height="80dp"/>
+
+        <TextView
+                android:id="@+id/tvNickname"
+                android:maxWidth="200dp"
+                android:layout_centerInParent="true"
+                android:lines="1"
+                android:layout_below="@id/ivUserHead"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="未登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/rlInfo"
+            android:paddingLeft="@dimen/space_main"
+            android:paddingRight="@dimen/space_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/topbar_large">
+
+        <TextView
+                android:text="我的资料"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:src="@mipmap/rignt_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+    </RelativeLayout>
+
+    <View
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/rlCollect"
+            android:paddingLeft="@dimen/space_main"
+            android:paddingRight="@dimen/space_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/topbar_large">
+
+        <TextView
+                android:text="我的收藏"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:src="@mipmap/rignt_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+    </RelativeLayout>
+
+    <View
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/rlBlog"
+            android:paddingLeft="@dimen/space_main"
+            android:paddingRight="@dimen/space_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/topbar_large">
+
+        <TextView
+                android:text="我的博客"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:src="@mipmap/rignt_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

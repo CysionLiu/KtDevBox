@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.cysion.ktbox.base.BaseAdapter
 import com.cysion.ktbox.base.BaseViewHolder
 import com.cysion.media.R
@@ -20,7 +21,9 @@ class SongAdapter(mEntities: MutableList<Song>, mContext: Context) : BaseAdapter
 class SongInnerHolder(itemView: View) : BaseViewHolder<Song>(itemView) {
     override fun fillData(obj: Song, position: Int) {
         obj.apply {
-            Glide.with(mContext).load(obj.thumb).into(itemView.ivThumb)
+            Glide.with(mContext).load(obj.thumb)
+                .apply(RequestOptions.placeholderOf(R.mipmap.place_holder))
+                .into(itemView.ivThumb)
             itemView.tvSongName.text = obj.title
             if (obj.artist != null) {
                 itemView.tvAuthor.text = "作家: ${obj.artist}"

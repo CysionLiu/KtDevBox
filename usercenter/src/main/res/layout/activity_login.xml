@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:id="@+id/llBox"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <com.cysion.uibox.bar.TopBar
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:layout_width="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/place_holder"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_height="70dp"/>
+
+    <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/space_main"
+            android:layout_marginRight="@dimen/space_main"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+        <TextView
+                android:text="用户名:"
+                android:textSize="@dimen/text_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <com.xw.repo.XEditText
+                android:lines="1"
+                android:id="@+id/etUsername"
+                android:textSize="@dimen/text_main"
+                android:hint="数字和字母，多于3位"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_marginLeft="@dimen/space_main"
+            android:layout_marginRight="@dimen/space_main"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+        <TextView
+                android:text="密  码:"
+                android:id="@+id/etPwd"
+                android:textSize="@dimen/text_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <com.xw.repo.XEditText
+                android:lines="1"
+                android:textSize="@dimen/text_main"
+                android:hint="多于3位"
+                android:inputType="textPassword"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tvLogin"
+            android:layout_marginTop="10dp"
+            android:text="登 录"
+            android:layout_gravity="center"
+            android:textSize="@dimen/text_largerx"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/white"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:padding="10dp"
+            android:id="@+id/tvRegister"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="没有账号？注册一个"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

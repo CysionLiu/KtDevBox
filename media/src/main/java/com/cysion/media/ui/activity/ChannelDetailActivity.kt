@@ -2,6 +2,7 @@ package com.cysion.media.ui.activity
 
 import android.support.v7.widget.LinearLayoutManager
 import com.cysion.ktbox.base.BaseActivity
+import com.cysion.ktbox.net.ErrorStatus
 import com.cysion.ktbox.utils.whiteTextTheme
 import com.cysion.media.R
 import com.cysion.media.adapter.SongAdapter
@@ -9,11 +10,11 @@ import com.cysion.media.constant.BUNDLE_KEY
 import com.cysion.media.constant.CHANNEL_NAME
 import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.Song
+import com.cysion.media.extension.tos
 import com.cysion.media.presenter.SongPresenter
 import com.cysion.media.ui.iview.SongView
 import com.cysion.other.color
 import com.cysion.uibox.bar.TopBar
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_channel_detail.*
 
 class ChannelDetailActivity : BaseActivity(), SongView {
@@ -68,14 +69,20 @@ class ChannelDetailActivity : BaseActivity(), SongView {
     }
 
     override fun loading() {
-        Logger.d("flag--", "loading")
+        multiView.showLoading()
     }
 
     override fun stopLoad() {
-        Logger.d("flag--", "stopload")
+        multiView.showContent()
     }
 
     override fun error(code: Int, msg: String) {
-        Logger.d("$code,$msg")
+        if (songList.size == 0) {
+            multiView.showEmpty()
+            if (code == ErrorStatus.NETWORK_ERROR) {
+                multiView.showNoNetwork()
+            }
+        }
+        tos(msg)
     }
 }

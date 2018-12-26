@@ -30,7 +30,7 @@ object ErrorHandler {
             errorMsg = "数据解析异常"
             errorCode = ErrorStatus.SERVER_ERROR
         } else if (e is ApiException) {//服务器返回的错误信息
-            errorMsg = e.message.toString()
+            errorMsg = e.errorMsg
             errorCode = e.errorCode
         } else if (e is UnknownHostException) {
             Logger.e("TAG", "网络连接异常: " + e.message)
@@ -43,7 +43,8 @@ object ErrorHandler {
             errorMsg = "未知错误，可能服务器抛锚了吧~"
             errorCode = ErrorStatus.UNKNOWN_ERROR
         }
-        return ApiException(errorCode, errorMsg)
+        val error = ApiException(errorCode, errorMsg)
+        return error
     }
 }
 

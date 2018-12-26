@@ -26,4 +26,6 @@ dependencies {
     implementation project(':ktbox')
     implementation project(':router')
     implementation project(':uibox')
+    api 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+    api 'com.xw.repo:xedittext:2.2.4'
 }

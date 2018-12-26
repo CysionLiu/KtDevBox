@@ -7,17 +7,19 @@ import com.cysion.media.ui.iview.SongView
 import com.cysion.other.addTo
 import com.cysion.targetfun._subscribe
 
-class SongPresenter:BasePresenter<SongView>() {
+class SongPresenter : BasePresenter<SongView>() {
 
-    fun getSongs(channelName:String){
+    fun getSongs(channelName: String) {
         checkViewAttached()
         attchedView?.loading()
         ChannelCaller.api.getChannelDetail(channelName)
             .compose(BaseRespRx.validateToMain())
             ._subscribe {
                 _onNext {
-                    attchedView?.stopLoad()
-                    attchedView?.setSongList(it.songlist)
+                    attchedView?.apply {
+                        setSongList(it.songlist)
+                        stopLoad()
+                    }
                 }
                 _onError {
                     attchedView?.stopLoad()

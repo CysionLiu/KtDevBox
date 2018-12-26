@@ -28,6 +28,7 @@ dependencies {
         transitive = true
         exclude group: 'com.android.support'
     }
+    api 'com.classic.common:multiple-status-view:1.5.1'
 
 }
 repositories {

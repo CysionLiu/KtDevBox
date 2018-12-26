@@ -1,6 +1,6 @@
-package com.cysion.media.constant
+package com.cysion.media.net
 
-object Urls {
+object MediaUrls {
     private var hasInited = false
     var debug: Boolean = true
         set(value) {

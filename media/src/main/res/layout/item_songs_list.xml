@@ -8,7 +8,7 @@
               android:layout_height="80dp">
 
     <ImageView
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/place_holder"
             android:id="@+id/ivThumb"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"

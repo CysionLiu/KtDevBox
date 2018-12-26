@@ -3,9 +3,9 @@ package com.cysion.media.ui.fragment
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Button
 import com.cysion.ktbox.base.BaseFragment
 import com.cysion.ktbox.base.ITEM_CLICK
+import com.cysion.ktbox.net.ErrorStatus
 import com.cysion.ktbox.utils.logd
 import com.cysion.media.R
 import com.cysion.media.adapter.NewsAdapter
@@ -14,6 +14,7 @@ import com.cysion.media.constant.LINK
 import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.Data
 import com.cysion.media.entity.NewsInfo
+import com.cysion.media.extension.tos
 import com.cysion.media.presenter.NewsPresenter
 import com.cysion.media.ui.activity.NewsDetailActivity
 import com.cysion.media.ui.iview.NewsView
@@ -51,6 +52,13 @@ class NewsFragment : BaseFragment(), NewsView {
         presenter.getNewsList()
     }
 
+    override fun visibleAgain() {
+        super.visibleAgain()
+        if (mdatalist.size == 0) {
+            presenter.getNewsList()
+        }
+    }
+
     override fun setNewsList(data: Data) {
         logd(data.tech.toString())
         mdatalist.addAll(data.tech!!)
@@ -64,13 +72,17 @@ class NewsFragment : BaseFragment(), NewsView {
     }
 
     override fun stopLoad() {
-        Button(activity).setOnClickListener(
-            { v -> "" }
-        )
+        multiView.showContent()
     }
 
     override fun error(code: Int, msg: String) {
-        logd("$code,$msg")
+        context.tos(msg)
+        if (mdatalist.size == 0) {
+            multiView.showEmpty()
+            if (code == ErrorStatus.NETWORK_ERROR) {
+                multiView.showNoNetwork()
+            }
+        }
     }
 
     override fun closeMvp() {
