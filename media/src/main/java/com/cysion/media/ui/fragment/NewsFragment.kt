@@ -14,11 +14,11 @@ import com.cysion.media.constant.LINK
 import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.Data
 import com.cysion.media.entity.NewsInfo
-import com.cysion.media.extension.tos
 import com.cysion.media.presenter.NewsPresenter
 import com.cysion.media.ui.activity.NewsDetailActivity
 import com.cysion.media.ui.iview.NewsView
 import com.cysion.other.startActivity_ex
+import com.cysion.uibox.toast.toast
 import kotlinx.android.synthetic.main.fragment_news.*
 
 class NewsFragment : BaseFragment(), NewsView {
@@ -69,6 +69,7 @@ class NewsFragment : BaseFragment(), NewsView {
     }
 
     override fun loading() {
+        multiView.showLoading()
     }
 
     override fun stopLoad() {
@@ -76,7 +77,7 @@ class NewsFragment : BaseFragment(), NewsView {
     }
 
     override fun error(code: Int, msg: String) {
-        context.tos(msg)
+        context.toast(msg)
         if (mdatalist.size == 0) {
             multiView.showEmpty()
             if (code == ErrorStatus.NETWORK_ERROR) {

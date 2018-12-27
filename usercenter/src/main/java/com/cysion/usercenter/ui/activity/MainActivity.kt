@@ -31,10 +31,10 @@ class MainActivity : BaseActivity() {
         vpContent._addOnPageChangeListener {
             _onPageSelected {
                 when (it) {
-                    2->{
+                    2 -> {
                         whiteTextTheme(color(R.color.dark))
                     }
-                    3->{
+                    3 -> {
                         whiteTextTheme(color(R.color.colorAccent))
                     }
                     else -> {

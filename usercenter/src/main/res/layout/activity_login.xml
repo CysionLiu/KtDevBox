@@ -56,13 +56,13 @@
 
         <TextView
                 android:text="密  码:"
-                android:id="@+id/etPwd"
                 android:textSize="@dimen/text_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         <com.xw.repo.XEditText
                 android:lines="1"
+                android:id="@+id/etPwd"
                 android:textSize="@dimen/text_main"
                 android:hint="多于3位"
                 android:inputType="textPassword"

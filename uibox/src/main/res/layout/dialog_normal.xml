@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:layout_margin="1dp"
+              android:paddingBottom="14dp"
+              android:background="@drawable/shape_textarea"
+              android:orientation="vertical"
+        >
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="提 示"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"/>
+
+    <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="请确认是否退出?"
+            android:textSize="@dimen/text_larger"/>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:textColor="@color/main_tag"
+                android:gravity="center"
+                android:textSize="@dimen/text_larger"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                android:textColor="@color/main_tag"
+                android:gravity="center"
+                android:textSize="@dimen/text_larger"
+                android:layout_weight="1"/>
+
+
+    </LinearLayout>
+</LinearLayout>

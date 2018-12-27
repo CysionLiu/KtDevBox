@@ -12,11 +12,11 @@ import com.cysion.media.constant.BUNDLE_KEY
 import com.cysion.media.constant.CHANNEL_NAME
 import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.ChannelInfo
-import com.cysion.media.extension.tos
 import com.cysion.media.presenter.ChnPresenter
 import com.cysion.media.ui.activity.ChannelDetailActivity
 import com.cysion.media.ui.iview.ChnView
 import com.cysion.other.startActivity_ex
+import com.cysion.uibox.toast.toast
 import kotlinx.android.synthetic.main.fragment_music_chn.*
 
 class MusicChannelFragment : BaseFragment(), ChnView {
@@ -72,7 +72,7 @@ class MusicChannelFragment : BaseFragment(), ChnView {
     }
 
     override fun error(code: Int, msg: String) {
-        context?.tos("$code,$msg")
+        context?.toast("$code,$msg")
         if (mChannelList.size == 0) {
             multiView.showEmpty()
             if (code == ErrorStatus.NETWORK_ERROR) {

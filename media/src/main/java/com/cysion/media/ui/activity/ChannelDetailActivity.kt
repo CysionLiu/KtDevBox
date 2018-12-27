@@ -10,11 +10,11 @@ import com.cysion.media.constant.BUNDLE_KEY
 import com.cysion.media.constant.CHANNEL_NAME
 import com.cysion.media.constant.TITLE
 import com.cysion.media.entity.Song
-import com.cysion.media.extension.tos
 import com.cysion.media.presenter.SongPresenter
 import com.cysion.media.ui.iview.SongView
 import com.cysion.other.color
 import com.cysion.uibox.bar.TopBar
+import com.cysion.uibox.toast.toast
 import kotlinx.android.synthetic.main.activity_channel_detail.*
 
 class ChannelDetailActivity : BaseActivity(), SongView {
@@ -74,6 +74,9 @@ class ChannelDetailActivity : BaseActivity(), SongView {
 
     override fun stopLoad() {
         multiView.showContent()
+        if (songList.size == 0) {
+            multiView.showEmpty()
+        }
     }
 
     override fun error(code: Int, msg: String) {
@@ -83,6 +86,6 @@ class ChannelDetailActivity : BaseActivity(), SongView {
                 multiView.showNoNetwork()
             }
         }
-        tos(msg)
+        toast(msg)
     }
 }

@@ -28,7 +28,10 @@ dependencies {
         transitive = true
         exclude group: 'com.android.support'
     }
+    //多状态视图
     api 'com.classic.common:multiple-status-view:1.5.1'
+    //修复过的toast
+    implementation 'com.github.Dovar66:DToast:1.1.0'
 
 }
 repositories {
