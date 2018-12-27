@@ -12,7 +12,6 @@
 
         <com.scwang.wave.MultiWaveHeader
                 android:id="@+id/waveHeader"
-                app:mwhIsRunning="false"
                 app:mwhStartColor="@color/colorAccent"
                 app:mwhCloseColor="@color/colorAccent"
                 android:layout_width="match_parent"

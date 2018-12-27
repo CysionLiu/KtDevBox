@@ -9,6 +9,7 @@ import com.cysion.other.startActivity_ex
 import com.cysion.usercenter.R
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.ui.activity.LoginActivity
+import com.cysion.usercenter.ui.activity.UserDetailActivity
 import kotlinx.android.synthetic.main.fragment_user_center.*
 
 class UserFragment : BaseFragment() {
@@ -32,7 +33,22 @@ class UserFragment : BaseFragment() {
         if (TextUtils.isEmpty(UserCache.userId)) {
             context.startActivity_ex<LoginActivity>()
         } else {
+            context.startActivity_ex<UserDetailActivity>()
+        }
+    }
 
+    override fun visibleAgain() {
+        super.visibleAgain()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        UserCache.userInfo?.apply {
+            Glide.with(context).load(UserCache.userInfo?.avatar)
+                .apply(RequestOptions.circleCropTransform())
+                .into(ivUserHead)
+            tvNickname.text = UserCache.userInfo?.nickname
         }
     }
 

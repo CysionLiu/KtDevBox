@@ -9,6 +9,7 @@ import com.cysion.other.color
 import com.cysion.targetfun._addOnPageChangeListener
 import com.cysion.usercenter.R
 import com.cysion.usercenter.helper.ListVals
+import com.cysion.usercenter.helper.UserCache
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -23,6 +24,7 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {
         super.initData()
+        UserCache.fromCache()
         mFragments = ListVals.getFragments()
         mTitles = ListVals.getTitles()
         vpContent.adapter = BaseFragmentAdapter(this.supportFragmentManager, mFragments, mTitles)

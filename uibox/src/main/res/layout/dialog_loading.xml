@@ -17,8 +17,8 @@
         android:padding="10dp">
 
         <ProgressBar
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:indeterminateTint="@color/white"
             android:layout_centerInParent="true"
             />

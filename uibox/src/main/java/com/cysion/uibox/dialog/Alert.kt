@@ -21,14 +21,8 @@ object Alert {
     private var mDialog: AlertDialog? = null
 
 
-    //关闭对话框
-    fun close() {
-        mDialog?.dismiss()
-        mDialog = null
-    }
-
-    //初始化对话框，并弹出
-    private fun setup(
+    //初始化对话框，并弹出；上层弹窗时不调用；上层 定制弹窗 时可使用
+    fun setup(
         src: Activity,
         layoutId: Int,
         widthMulti: Float,
@@ -58,6 +52,14 @@ object Alert {
         mDialog = dialog
         return view
     }
+
+
+    //关闭对话框
+    fun close() {
+        mDialog?.dismiss()
+        mDialog = null
+    }
+
 
     //加载框
     fun loading(src: Activity) {

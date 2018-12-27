@@ -30,11 +30,13 @@ fun logi(msg: String) {
         Logger.i(msg)
     }
 }
+
 fun logw(msg: String) {
     if (Box.debug) {
         Logger.w(msg)
     }
 }
+
 //color-状态栏背景颜色
 fun Activity.whiteTextTheme(@ColorInt color: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -50,6 +52,7 @@ fun Activity.darkTextTheme(@ColorInt color: Int) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR//恢复状态栏黑色字体
     }
 }
+
 //深度回收view
 fun View.gc() {
     val view = this
@@ -69,6 +72,9 @@ fun View.gc() {
     }
 }
 
-inline fun <reified T> Gson.fromjson(json: String): T {
+inline fun <reified T> Gson.fromjson(json: String): T? {
+//    if (TextUtils.isEmpty(json)) {
+//        return null
+//    }
     return GsonBuilder().create().fromJson(json, object : TypeToken<T>() {}.type)
 }

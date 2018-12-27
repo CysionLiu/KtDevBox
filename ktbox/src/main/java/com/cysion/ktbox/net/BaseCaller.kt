@@ -9,20 +9,25 @@ import retrofit2.Retrofit
  * 在需要使用时，建议是（每个域名或者组件内分别）使用其子类，以便根据情况更改baseurl
  * 或者添加一些公共参数，headers等.
  * initInstantly,默认true,立即初始化调用init; false,需要使用者初始化，用于添加拦截器
- * 例如
- * 声明：object Caller : BaseCaller<Api>("you baseurl", Api::class.java)
+ * 例如，声明：
+ * object Caller : BaseCaller<Api>("you baseurl", Api::class.java)
  * interface Api {
-      @GET()
-      fun test()
-   }
+        @GET()
+        fun test()
+    }
  *  使用: Caller.api.test()或者Caller.loadApi<Api>().test()
+ *
  *  若是要添加一些公共参数或者header
  *  可以这样初始化，instantlyInit设为false
  *  object Caller : BaseCaller<Api>("you baseurl", Api::class.java，false)
  *  Caller.addInterceptor(your interceptor).init()
+ *
+ *  可在合适的位置打断点调试查看参数，具体见代码注释处
  */
 
-abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>, val initInstantly: Boolean=true) {
+abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>, val initInstantly: Boolean = true) {
+
+
     var hasInited = false
         private set
     private val interceptors: MutableList<Interceptor> = mutableListOf()
@@ -50,6 +55,12 @@ abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>, val in
         val okHttpClientBuilder = BaseClient.mOkHttpClient.newBuilder()
         interceptors.forEach {
             okHttpClientBuilder.addInterceptor(it)
+
+        }
+        okHttpClientBuilder.addInterceptor {
+            //断点调试
+            val request = it.request();
+            it.proceed(request)
         }
         val okHttpClient = okHttpClientBuilder.build()
 

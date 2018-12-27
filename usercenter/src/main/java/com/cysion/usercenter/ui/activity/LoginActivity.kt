@@ -4,6 +4,7 @@ import com.cysion.ktbox.base.BaseActivity
 import com.cysion.ktbox.utils.whiteTextTheme
 import com.cysion.other._setOnClickListener
 import com.cysion.other.color
+import com.cysion.other.startActivity_ex
 import com.cysion.uibox.bar.TopBar
 import com.cysion.uibox.dialog.Alert
 import com.cysion.uibox.toast.toast
@@ -44,11 +45,13 @@ class LoginActivity : BaseActivity(), LoginView {
         }
 
         tvRegister._setOnClickListener {
-
+            self.startActivity_ex<RegisterActivity>()
+            finish()
         }
     }
 
     override fun setUserInfo(u: UserEntity) {
+        toast("登录成功")
         finish()
     }
 
