@@ -1,6 +1,5 @@
 package com.cysion.usercenter.helper
 
-import android.text.TextUtils
 import com.cysion.ktbox.Box
 import com.cysion.ktbox.utils.ACache
 import com.cysion.ktbox.utils.fromjson
@@ -35,9 +34,6 @@ object UserCache {
 
     fun fromCache() {
         val userinfo = ACache.get(Box.context).getAsString(USER_KEY)
-        if (TextUtils.isEmpty(userinfo)) {
-            return
-        }
         var userInfo = Gson().fromjson<UserEntity>(userinfo)
         save(userInfo)
     }

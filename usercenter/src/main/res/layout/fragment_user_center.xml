@@ -119,4 +119,33 @@
 
     </RelativeLayout>
 
+
+    <View
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:paddingLeft="@dimen/space_main"
+            android:paddingRight="@dimen/space_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:text="注销"
+                android:id="@+id/tvLogout"
+                android:background="@drawable/round_background"
+                android:layout_centerInParent="true"
+                android:layout_width="280dp"
+                android:gravity="center"
+                android:textSize="@dimen/text_larger"
+                android:textColor="@color/white"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
 </LinearLayout>

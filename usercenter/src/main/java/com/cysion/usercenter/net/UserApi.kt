@@ -36,10 +36,9 @@ interface UserApi {
     fun updateUserInfo(
         @Field("nickname") nickname: String,
         @Field("desc") desc: String,
-        @Field("avatar") avatar: String
+        @Field("avatar") avatar: String=""
     ): Observable<BaseResponse<UserEntity>>
 
-    @FormUrlEncoded
     @POST("userdetail")
     fun getUserInfo(): Observable<BaseResponse<UserEntity>>
 

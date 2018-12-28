@@ -70,6 +70,7 @@
     <FrameLayout
             android:id="@+id/flayoutRight"
             android:padding="2dp"
+            android:layout_marginRight="6dp"
             android:layout_width="42dp"
             android:layout_height="42dp">
 

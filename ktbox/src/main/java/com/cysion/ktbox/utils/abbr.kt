@@ -3,6 +3,7 @@ package com.cysion.ktbox.utils
 import android.app.Activity
 import android.os.Build
 import android.support.annotation.ColorInt
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
@@ -72,9 +73,9 @@ fun View.gc() {
     }
 }
 
-inline fun <reified T> Gson.fromjson(json: String): T? {
-//    if (TextUtils.isEmpty(json)) {
-//        return null
-//    }
+inline fun <reified T> Gson.fromjson(json: String?): T? {
+    if (TextUtils.isEmpty(json)) {
+        return null
+    }
     return GsonBuilder().create().fromJson(json, object : TypeToken<T>() {}.type)
 }

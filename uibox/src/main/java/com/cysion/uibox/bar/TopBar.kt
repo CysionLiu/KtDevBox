@@ -58,7 +58,7 @@ class TopBar : RelativeLayout {
         mOnTopBarClickListener = aOnTopBarClickListener
     }
 
-    fun initElements(left: ELEMENT, center: ELEMENT, right: ELEMENT) {
+    fun initElements(left: ELEMENT=ELEMENT.IMG, center: ELEMENT=ELEMENT.TEXT, right: ELEMENT=ELEMENT.GONE) {
         if (left == ELEMENT.TEXT) {
             ivLeft.visibility = View.GONE
             tvLeft.visibility = View.VISIBLE

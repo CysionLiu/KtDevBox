@@ -120,6 +120,7 @@
                 android:maxLines="5"
                 android:background="@null"
                 android:ellipsize="end"
+                android:textSize="@dimen/text_main"
                 android:layout_marginTop="10dp"
                 android:hint="说点什么..."
                 android:layout_width="match_parent"
