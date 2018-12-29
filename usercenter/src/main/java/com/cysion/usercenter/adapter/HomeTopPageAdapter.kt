@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.cysion.usercenter.R
 import com.cysion.usercenter.entity.Carousel
 import kotlinx.android.synthetic.main.item_carousel_square.view.*
@@ -34,7 +35,9 @@ class HomeTopPageAdapter(private val mContext: Context, private val datalist: Mu
      */
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_carousel_square, null)
-        Glide.with(mContext).load(datalist[position].picUrl).into(view.ivCover)
+        Glide.with(mContext).load(datalist[position].picUrl).apply(
+            RequestOptions().placeholder(R.mipmap.place_holder_long)
+        ).into(view.ivCover)
         view.setOnClickListener {
             mListener?.invoke(datalist[position])
         }

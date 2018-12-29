@@ -2,15 +2,13 @@ package com.cysion.usercenter.net
 
 import com.cysion.ktbox.net.BaseCaller
 import com.cysion.ktbox.net.BaseResponse
+import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.Carousel
 import com.cysion.usercenter.entity.UserEntity
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
-object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java,false)
+object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java, false)
 interface UserApi {
 
     @GET("toploopers")
@@ -36,10 +34,13 @@ interface UserApi {
     fun updateUserInfo(
         @Field("nickname") nickname: String,
         @Field("desc") desc: String,
-        @Field("avatar") avatar: String=""
+        @Field("avatar") avatar: String = ""
     ): Observable<BaseResponse<UserEntity>>
 
     @POST("userdetail")
     fun getUserInfo(): Observable<BaseResponse<UserEntity>>
+
+    @GET("blog/list")
+    fun getBlogList(@Query("page") page: Int = 1): Observable<BaseResponse<MutableList<Blog>>>
 
 }

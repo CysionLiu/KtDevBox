@@ -63,7 +63,9 @@ object Alert {
 
     //加载框
     fun loading(src: Activity) {
-        setup(src, R.layout.dialog_loading, 1f, true, null)
+        src.runOnUiThread {
+            setup(src, R.layout.dialog_loading, 1f, true, null)
+        }
     }
 
     //正常弹出，带有确定和取消，例子：
@@ -81,7 +83,7 @@ object Alert {
         ok: String = "确定",
         clickListener: OnTypeClickListener?
     ) {
-        val view = setup(src, R.layout.dialog_normal, 0.8f, true,clickListener,dim = 0.3f)
+        val view = setup(src, R.layout.dialog_normal, 0.8f, true, clickListener, dim = 0.3f)
         view.findViewById<TextView>(R.id.tv_title).text = title
         view.findViewById<TextView>(R.id.tv_content).text = content
         view.findViewById<TextView>(R.id.tv_cancel).apply {

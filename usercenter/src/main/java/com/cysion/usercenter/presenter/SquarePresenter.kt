@@ -22,4 +22,22 @@ class SquarePresenter : BasePresenter<SquareView>() {
                 }
             }.addTo(compositeDisposable)
     }
+
+    fun getBlogs(pageNum: Int) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.getBlogList(page = pageNum)
+            .compose(BaseResponseRx.validateToMain())
+            ._subscribe {
+                _onNext {
+                    attchedView?.stopLoad()
+                    attchedView?.setBlogList(it)
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+
+    }
 }

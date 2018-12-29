@@ -53,15 +53,15 @@ object ErrorStatus {
     /**
      * 未知错误
      */
-    const val UNKNOWN_ERROR = 600
+    const val UNKNOWN_ERROR = 1600
 
     /**
      * 服务器内部错误
      */
-    const val SERVER_ERROR = 500
+    const val SERVER_ERROR = 1500
 
     /**
      * 网络连接超时，倾向于客户端网络问题
      */
-    const val NETWORK_ERROR = 400
+    const val NETWORK_ERROR = 1400
 }

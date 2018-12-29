@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
     private lateinit var mTitles: MutableList<String>
 
     override fun initView() {
-        darkTextTheme(color(R.color.white))
+        whiteTextTheme(color(R.color.colorAccent))
         vpContent.offscreenPageLimit = 4
     }
 
@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
                     2 -> {
                         whiteTextTheme(color(R.color.dark))
                     }
-                    3 -> {
+                    0,3 -> {
                         whiteTextTheme(color(R.color.colorAccent))
                     }
                     else -> {
