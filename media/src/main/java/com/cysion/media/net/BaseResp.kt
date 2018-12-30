@@ -16,6 +16,7 @@ data class BaseResp<T>(val code: Int, val msg: String, val result: T) {
 }
 
 object BaseRespRx {
+    //    当T为null时，不能调用map方法，应使用BaseResponseRx.threadline()；此时，code完全能表明结果状态
     fun <T> validateToMain(): ObservableTransformer<BaseResp<T>, T> {
         return ObservableTransformer { observable ->
             observable.map(validate()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

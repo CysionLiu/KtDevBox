@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    <com.cysion.uibox.bar.TopBar
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.classic.common.MultipleStatusView
+            android:id="@+id/multiView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvBloglist"
+                android:layout_marginBottom="20dp"
+                android:padding="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </com.classic.common.MultipleStatusView>
+</LinearLayout>

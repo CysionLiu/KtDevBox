@@ -49,6 +49,7 @@ class UserDetailActivity : BaseActivity() {
                         ._subscribe {
                             _onNext {
                                 UserCache.save(it)
+                                toast("保存成功")
                                 Alert.close()
                             }
                             _onError {

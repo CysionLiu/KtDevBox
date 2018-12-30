@@ -40,7 +40,23 @@ interface UserApi {
     @POST("userdetail")
     fun getUserInfo(): Observable<BaseResponse<UserEntity>>
 
+//    以下，博客相关
+
     @GET("blog/list")
     fun getBlogList(@Query("page") page: Int = 1): Observable<BaseResponse<MutableList<Blog>>>
+
+
+    @GET("blog/userlist")
+    fun getUserBlogList(@Query("page") page: Int): Observable<BaseResponse<MutableList<Blog>>>
+
+    @FormUrlEncoded
+    @POST("blog/del")
+    fun delBlog(@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
+
+
+    @FormUrlEncoded
+    @POST("blog/add")
+    fun createBlog(@Field("title") title: String, @Field("text") text: String): Observable<BaseResponse<Any?>>
+
 
 }

@@ -13,6 +13,7 @@ import com.cysion.usercenter.R
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.net.UserCaller
 import com.cysion.usercenter.ui.activity.LoginActivity
+import com.cysion.usercenter.ui.activity.UserBlogActivity
 import com.cysion.usercenter.ui.activity.UserDetailActivity
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_user_center.*
@@ -33,6 +34,13 @@ class UserFragment : BaseFragment() {
         }
         rlInfo._setOnClickListener {
             toLogin()
+        }
+        rlBlog._setOnClickListener {
+            if (TextUtils.isEmpty(UserCache.token)) {
+                context.startActivity_ex<LoginActivity>()
+            } else {
+                context.startActivity_ex<UserBlogActivity>()
+            }
         }
         tvLogout._setOnClickListener {
             UserCache.clear()
@@ -72,10 +80,10 @@ class UserFragment : BaseFragment() {
     }
 
     private fun updateUserInfo() {
-        Glide.with(context).load(UserCache.userInfo?.avatar?:R.mipmap.place_holder)
+        Glide.with(context).load(UserCache.userInfo?.avatar ?: R.mipmap.place_holder)
             .apply(RequestOptions.circleCropTransform())
             .into(ivUserHead)
-        tvNickname.text = UserCache.userInfo?.nickname?:"未登录"
+        tvNickname.text = UserCache.userInfo?.nickname ?: "未登录"
     }
 
     override fun closeMvp() {

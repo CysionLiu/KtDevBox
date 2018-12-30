@@ -2,10 +2,13 @@ package com.cysion.usercenter.ui.fragment
 
 import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
+import android.text.TextUtils
 import android.view.Gravity
 import com.cysion.ktbox.base.BaseFragment
 import com.cysion.ktbox.net.ErrorStatus
+import com.cysion.other._setOnClickListener
 import com.cysion.other.dp2px
+import com.cysion.other.startActivity_ex
 import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
 import com.cysion.usercenter.adapter.BlogAdapter
@@ -13,7 +16,10 @@ import com.cysion.usercenter.adapter.HomeTopPageAdapter
 import com.cysion.usercenter.comm.Resolver.mediaActivityApi
 import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.Carousel
+import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.presenter.SquarePresenter
+import com.cysion.usercenter.ui.activity.BlogEditorActivity
+import com.cysion.usercenter.ui.activity.LoginActivity
 import com.cysion.usercenter.ui.iview.SquareView
 import com.tmall.ultraviewpager.UltraViewPager
 import kotlinx.android.synthetic.main.fragment_square.*
@@ -40,6 +46,17 @@ class SquareFragment : BaseFragment(), SquareView {
         ultraViewPager.adapter = topAdapter
         configViewPager()
         initRecyclerView()
+        initFab()
+    }
+
+    private fun initFab() {
+        fabBtn._setOnClickListener {
+            if (TextUtils.isEmpty(UserCache.token)) {
+                context.startActivity_ex<LoginActivity>()
+            } else {
+                BlogEditorActivity.start(context, "", "")
+            }
+        }
     }
 
     private fun configViewPager() {
@@ -105,7 +122,7 @@ class SquareFragment : BaseFragment(), SquareView {
 
     override fun error(code: Int, msg: String) {
         toast(msg)
-        if (mBlogs.size == 0) {
+        if (mBlogs.size == 0 && mCarousels.size == 0) {
             multiView.showEmpty()
             if (code == ErrorStatus.NETWORK_ERROR) {
                 multiView.showNoNetwork()

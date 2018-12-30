@@ -16,6 +16,10 @@
         </activity>
         <activity android:name=".ui.activity.UserDetailActivity">
         </activity>
+        <activity android:name=".ui.activity.UserBlogActivity">
+        </activity>
+        <activity android:name=".ui.activity.BlogEditorActivity">
+        </activity>
     </application>
 
 </manifest>

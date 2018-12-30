@@ -10,5 +10,6 @@ data class Blog(
     val modifyStamptime: String,
     val prideCount: Int,
     val text: String,
-    val title: String
+    val title: String,
+    val isLargeIcon:Int
 )

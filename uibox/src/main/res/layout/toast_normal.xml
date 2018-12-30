@@ -11,7 +11,7 @@
             tools:text="...哈哈哈哈"
             android:textColor="@color/white"
             android:padding="8dp"
-            android:maxWidth="200dp"
+            android:maxWidth="240dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

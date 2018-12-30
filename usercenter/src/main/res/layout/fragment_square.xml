@@ -28,6 +28,7 @@
 
                 <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvBloglist"
+                        android:layout_marginBottom="20dp"
                         android:padding="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
@@ -40,6 +41,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="30dp"
             app:fabSize="mini"
+            android:id="@+id/fabBtn"
             app:backgroundTint="@color/colorAccent"
             android:src="@mipmap/add_blog"
             android:layout_marginRight="30dp"

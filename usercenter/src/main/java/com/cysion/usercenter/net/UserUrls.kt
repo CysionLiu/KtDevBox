@@ -13,6 +13,6 @@ object UserUrls {
         }
 
     val HOST by lazy {
-        if (debug) "http://148.70.2.189/app/" else "http://148.70.2.189/app/"
+        if (debug) "http://192.168.3.9:8000/app/" else "http://148.70.2.189/app/"
     }
 }
