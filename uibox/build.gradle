@@ -33,6 +33,9 @@ dependencies {
     //修复过的toast
     implementation 'com.github.Dovar66:DToast:1.1.0'
 
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
+    api "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion"//版本 23以上（必须）
+
 }
 repositories {
     mavenCentral()

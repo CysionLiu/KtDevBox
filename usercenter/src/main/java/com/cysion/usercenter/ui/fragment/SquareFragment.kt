@@ -21,6 +21,7 @@ import com.cysion.usercenter.presenter.SquarePresenter
 import com.cysion.usercenter.ui.activity.BlogEditorActivity
 import com.cysion.usercenter.ui.activity.LoginActivity
 import com.cysion.usercenter.ui.iview.SquareView
+import com.scwang.smartrefresh.layout.constant.RefreshState
 import com.tmall.ultraviewpager.UltraViewPager
 import kotlinx.android.synthetic.main.fragment_square.*
 
@@ -41,25 +42,27 @@ class SquareFragment : BaseFragment(), SquareView {
     override fun getLayoutId(): Int = R.layout.fragment_square
 
     override fun initView() {
-        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL)
-        topAdapter = HomeTopPageAdapter(context, mCarousels)
-        ultraViewPager.adapter = topAdapter
-        configViewPager()
+        initRefreshLayout()
+        initViewPager()
         initRecyclerView()
         initFab()
     }
 
-    private fun initFab() {
-        fabBtn._setOnClickListener {
-            if (TextUtils.isEmpty(UserCache.token)) {
-                context.startActivity_ex<LoginActivity>()
-            } else {
-                BlogEditorActivity.start(context, "", "")
-            }
+    private fun initRefreshLayout() {
+        smartLayout.setEnableRefresh(false)
+        smartLayout.setOnRefreshListener {
+            curPage = 1
+            presenter.getBlogs(curPage)
+        }
+        smartLayout.setOnLoadMoreListener {
+            presenter.getBlogs(curPage)
         }
     }
 
-    private fun configViewPager() {
+    private fun initViewPager() {
+        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL)
+        topAdapter = HomeTopPageAdapter(context, mCarousels)
+        ultraViewPager.adapter = topAdapter
         ultraViewPager.initIndicator()
         ultraViewPager.getIndicator()
             .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
@@ -90,34 +93,54 @@ class SquareFragment : BaseFragment(), SquareView {
         rvBloglist.layoutManager = LinearLayoutManager(context)
     }
 
+
+    private fun initFab() {
+        fabBtn._setOnClickListener {
+            if (TextUtils.isEmpty(UserCache.token)) {
+                context.startActivity_ex<LoginActivity>()
+            } else {
+                BlogEditorActivity.start(context, "", "")
+            }
+        }
+    }
+
     override fun initData() {
         super.initData()
         presenter.getCarousel()
         presenter.getBlogs(curPage)
     }
 
-    override fun closeMvp() {
-        presenter.detach()
-    }
-
     override fun setCarousels(carousels: MutableList<Carousel>) {
         mCarousels.clear()
         mCarousels.addAll(carousels)
         ultraViewPager.refresh()
+        scrollView.scrollTo(0,0)
     }
 
     override fun setBlogList(blogs: MutableList<Blog>) {
-        mBlogs.clear()
+        if (curPage == 1) {
+            mBlogs.clear()
+        }
+        curPage++
         mBlogs.addAll(blogs)
         blogAdapter.notifyDataSetChanged()
     }
 
     override fun loading() {
-        multiView.showLoading()
+        if (curPage == 1) {
+            multiView.showLoading()
+        }
     }
 
     override fun stopLoad() {
-        multiView.showContent()
+        if (curPage == 1) {
+            multiView.showContent()
+        }
+        if (smartLayout.state == RefreshState.Refreshing) {
+            smartLayout.finishRefresh()
+        } else if (smartLayout.state == RefreshState.Loading) {
+            smartLayout.finishLoadMore()
+        }
     }
 
     override fun error(code: Int, msg: String) {
@@ -129,4 +152,9 @@ class SquareFragment : BaseFragment(), SquareView {
             }
         }
     }
+
+    override fun closeMvp() {
+        presenter.detach()
+    }
+
 }

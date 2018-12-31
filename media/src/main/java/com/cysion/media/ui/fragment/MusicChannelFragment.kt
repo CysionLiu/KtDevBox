@@ -58,9 +58,11 @@ class MusicChannelFragment : BaseFragment(), ChnView {
     }
 
     override fun setChannels(datalist: MutableList<ChannelInfo>) {
-        mChannelList.clear()
         mChannelList.addAll(datalist)
         adapter.notifyDataSetChanged()
+        if (mChannelList.size == 0) {
+            multiView.showEmpty()
+        }
     }
 
     override fun loading() {

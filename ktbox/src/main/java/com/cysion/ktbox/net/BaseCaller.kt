@@ -1,6 +1,8 @@
 package com.cysion.ktbox.net
 
+import com.cysion.ktbox.Box
 import okhttp3.Interceptor
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
 
@@ -62,6 +64,7 @@ abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>, val in
             val request = it.request();
             it.proceed(request)
         }
+        okHttpClientBuilder.addInterceptor(HttpLoggingInterceptor().setLevel(getLevel()))
         val okHttpClient = okHttpClientBuilder.build()
 
         mRetrofit = BaseClient.mRetrofit.newBuilder()
@@ -76,5 +79,12 @@ abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>, val in
             throw Exception("One caller should invoke init() before loadApi")
         }
         return mRetrofit.create(T::class.java)
+    }
+
+
+    private fun getLevel(): HttpLoggingInterceptor.Level {
+        return if (Box.debug) {
+            HttpLoggingInterceptor.Level.BODY
+        } else HttpLoggingInterceptor.Level.NONE
     }
 }

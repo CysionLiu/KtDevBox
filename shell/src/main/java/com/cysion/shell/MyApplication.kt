@@ -1,11 +1,35 @@
 package com.cysion.shell
 
 import android.app.Application
+import android.content.Context
 import com.cysion.ktbox.Box
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.*
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import io.github.prototypez.appjoint.core.AppSpec
+
 
 @AppSpec
 class MyApplication : Application() {
+
+    companion object {
+        init {
+            //设置全局的Header构建器
+            SmartRefreshLayout.setDefaultRefreshHeaderCreator(object :DefaultRefreshHeaderCreator{
+                override fun createRefreshHeader(context: Context, layout: RefreshLayout): RefreshHeader {
+                    return ClassicsHeader(context)
+                }
+            })
+            //设置全局的Footer构建器
+            SmartRefreshLayout.setDefaultRefreshFooterCreator(object : DefaultRefreshFooterCreator{
+                override fun createRefreshFooter(context: Context, layout: RefreshLayout): RefreshFooter {
+                    return BallPulseFooter(context)
+                }
+            })
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
         Box.init(this,true)

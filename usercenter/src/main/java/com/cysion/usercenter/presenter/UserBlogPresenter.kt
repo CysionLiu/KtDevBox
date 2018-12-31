@@ -33,7 +33,7 @@ class UserBlogPresenter : BasePresenter<UserBlogListView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.delBlog(blogId)
-            .compose(BaseResponseRx.validateToMain())
+            .compose(BaseResponseRx.threadline())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {

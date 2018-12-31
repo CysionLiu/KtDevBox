@@ -11,10 +11,7 @@ import com.cysion.uibox.bar.TopBar
 import com.cysion.uibox.dialog.Alert
 import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
-import com.cysion.usercenter.constant.BLOG_CONTENT
-import com.cysion.usercenter.constant.BLOG_EDIT_TYPE
-import com.cysion.usercenter.constant.BLOG_TITLE
-import com.cysion.usercenter.constant.BUNDLE_KEY
+import com.cysion.usercenter.constant.*
 import com.cysion.usercenter.presenter.BlogEditorPresenter
 import com.cysion.usercenter.ui.iview.BlogEditorView
 import kotlinx.android.synthetic.main.activity_blog_editor.*
@@ -26,11 +23,12 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
     type=0，创建；1，编辑
      */
     companion object {
-        fun start(activity: Activity, title: String, content: String, type: Int = 0) {
+        fun start(activity: Activity, title: String, content: String, type: Int = 0, blogId: String = "") {
             val b = Bundle()
             b.putString(BLOG_TITLE, title)
             b.putString(BLOG_CONTENT, content)
             b.putInt(BLOG_EDIT_TYPE, type)
+            b.putString(BLOG_ID, blogId)
             activity.startActivity_ex<BlogEditorActivity>(BUNDLE_KEY, b)
         }
     }
@@ -41,20 +39,34 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
         }
     }
 
+    private val extra by lazy {
+        intent.getBundleExtra(BUNDLE_KEY)
+    }
+
     private val title: String by lazy {
-        intent.getBundleExtra(BUNDLE_KEY).getString(BLOG_TITLE)
+        extra.getString(BLOG_TITLE)
     }
     private val content: String by lazy {
-        intent.getBundleExtra(BUNDLE_KEY).getString(BLOG_CONTENT)
+        extra.getString(BLOG_CONTENT)
+    }
+    private val blogId: String by lazy {
+        extra.getString(BLOG_ID)
     }
     private val type: Int by lazy {
-        intent.getBundleExtra(BUNDLE_KEY).getInt(BLOG_EDIT_TYPE)
+        extra.getInt(BLOG_EDIT_TYPE)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_blog_editor
 
     override fun initView() {
         whiteTextTheme(color(R.color.colorAccent))
+        initTextWatcher()
+        initTopBar()
+        initEditor()
+
+    }
+
+    private fun initTextWatcher() {
         etTitle._addTextChangedListener {
             _afterTextChanged {
                 it?.apply {
@@ -73,15 +85,10 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
                 }
             }
         }
-        initTopBar()
-        initEditor()
-
     }
 
     private fun initEditor() {
-        if (type == 0) {
-
-        } else {
+        if (type != 0) {
             etTitle.setText(title)
             etContent.setText(content)
         }
@@ -91,19 +98,28 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
         topbar.apply {
             initElements(right = TopBar.ELEMENT.TEXT)
             setTitle("编辑")
-            setTexts("发布", TopBar.Pos.RIGHT)
-            setOnTopBarClickListener { obj, pos ->
-                if (pos == TopBar.Pos.LEFT) {
-                    finish()
-                } else if (pos == TopBar.Pos.RIGHT) {
-                    if (etTitle.text.length < 1) {
-                        toast("请输入标题")
-                    } else {
+            setTexts(if (type == 0) "发布" else "更新", TopBar.Pos.RIGHT)
+        }.setOnTopBarClickListener { obj, pos ->
+            if (pos == TopBar.Pos.LEFT) {
+                finish()
+            } else if (pos == TopBar.Pos.RIGHT) {
+                if (etTitle.text.length < 1) {
+                    toast("请输入标题")
+                } else {
+                    if (type == 0) {
                         presenter.createBlog(
                             etTitle.text.toString().trim()
                             , etContent.text.toString().trim()
                         )
+                    } else {
+                        presenter.updateBlog(
+                            etTitle.text.toString().trim()
+                            , etContent.text.toString().trim(),
+                            blogId
+                        )
+
                     }
+
                 }
             }
         }
@@ -115,6 +131,7 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
     }
 
     override fun updateDone() {
+        toast("更新成功")
     }
 
     override fun loading() {

@@ -17,8 +17,8 @@ class SongPresenter : BasePresenter<SongView>() {
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
-                        setSongList(it.songlist)
                         stopLoad()
+                        setSongList(it.songlist)
                     }
                 }
                 _onError {

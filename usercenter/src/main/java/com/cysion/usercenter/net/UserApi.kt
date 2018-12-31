@@ -59,4 +59,12 @@ interface UserApi {
     fun createBlog(@Field("title") title: String, @Field("text") text: String): Observable<BaseResponse<Any?>>
 
 
+
+    @FormUrlEncoded
+    @POST("blog/update")
+    fun updateBlog(@Field("title") title: String, @Field("text") text: String
+    ,@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
+
+
+
 }

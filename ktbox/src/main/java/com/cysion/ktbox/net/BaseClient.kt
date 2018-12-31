@@ -10,7 +10,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
- * 保证项目仅持有一份okhttp和retrofit的底层资源；
+ * 保证项目仅持有一份okhttp和retrofit的底层资源，不可直接使用；
  * 网络请求参考BaseCaller
  */
 
@@ -21,7 +21,6 @@ object BaseClient {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(HttpLoggingInterceptor().setLevel(getLevel()))
             .build()
     }
 
@@ -35,9 +34,4 @@ object BaseClient {
             .build()
     }
 
-    private fun getLevel(): HttpLoggingInterceptor.Level {
-        return if (Box.debug) {
-            HttpLoggingInterceptor.Level.BODY
-        } else HttpLoggingInterceptor.Level.NONE
-    }
 }

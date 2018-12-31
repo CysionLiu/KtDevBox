@@ -6,46 +6,55 @@
         android:id="@+id/multiView"
         android:layout_height="match_parent">
 
-    <ScrollView
-            android:background="@color/gray_"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smartLayout"
+            app:srlEnableNestedScrolling="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-                android:orientation="vertical"
+        <ScrollView
+                android:id="@+id/scrollView"
+                android:background="@color/gray_"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <com.tmall.ultraviewpager.UltraViewPager
-                    android:id="@+id/ultraViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    />
 
-            <RelativeLayout
+            <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvBloglist"
-                        android:layout_marginBottom="20dp"
-                        android:padding="4dp"
+                <com.tmall.ultraviewpager.UltraViewPager
+                        android:id="@+id/ultraViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+                        android:layout_height="220dp"
+                        />
 
-    <android.support.design.widget.FloatingActionButton
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
-            app:fabSize="mini"
-            android:id="@+id/fabBtn"
-            app:backgroundTint="@color/colorAccent"
-            android:src="@mipmap/add_blog"
-            android:layout_marginRight="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvBloglist"
+                            android:layout_marginBottom="20dp"
+                            android:padding="4dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <android.support.design.widget.FloatingActionButton
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                app:fabSize="mini"
+                android:id="@+id/fabBtn"
+                app:backgroundTint="@color/colorAccent"
+                android:src="@mipmap/add_blog"
+                android:layout_marginRight="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 </com.classic.common.MultipleStatusView>

@@ -28,4 +28,23 @@ class BlogEditorPresenter : BasePresenter<BlogEditorView>() {
             }.addTo(compositeDisposable)
     }
 
+    fun updateBlog(title: String, text: String, blogId: String) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.updateBlog(title, text, blogId)
+            .compose(BaseResponseRx.threadline())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        stopLoad()
+                        updateDone()
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+    }
+
 }

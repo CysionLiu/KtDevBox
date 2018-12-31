@@ -59,9 +59,11 @@ class ChannelDetailActivity : BaseActivity(), SongView {
     }
 
     override fun setSongList(songs: MutableList<Song>) {
-        songList.clear()
         songList.addAll(songs)
         adapter.notifyDataSetChanged()
+        if (songList.size == 0) {
+            multiView.showEmpty()
+        }
     }
 
     override fun closeMvp() {
@@ -74,9 +76,6 @@ class ChannelDetailActivity : BaseActivity(), SongView {
 
     override fun stopLoad() {
         multiView.showContent()
-        if (songList.size == 0) {
-            multiView.showEmpty()
-        }
     }
 
     override fun error(code: Int, msg: String) {

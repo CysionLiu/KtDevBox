@@ -66,6 +66,9 @@ class NewsFragment : BaseFragment(), NewsView {
         mdatalist.addAll(data.sports!!)
         mdatalist.addAll(data.dy!!)
         adapter.notifyDataSetChanged()
+        if (mdatalist.size==0) {
+            multiView.showEmpty()
+        }
     }
 
     override fun loading() {
