@@ -34,6 +34,7 @@ dependencies {
     implementation 'com.github.Dovar66:DToast:1.1.0'
 
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-18'//没有使用特殊Header，可以不加这行
     api "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion"//版本 23以上（必须）
 
 }

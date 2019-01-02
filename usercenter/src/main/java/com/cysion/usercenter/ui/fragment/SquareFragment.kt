@@ -49,10 +49,11 @@ class SquareFragment : BaseFragment(), SquareView {
     }
 
     private fun initRefreshLayout() {
-        smartLayout.setEnableRefresh(false)
         smartLayout.setOnRefreshListener {
             curPage = 1
+            presenter.getCarousel()
             presenter.getBlogs(curPage)
+            smartLayout.setEnableLoadMore(true)
         }
         smartLayout.setOnLoadMoreListener {
             presenter.getBlogs(curPage)
@@ -106,15 +107,13 @@ class SquareFragment : BaseFragment(), SquareView {
 
     override fun initData() {
         super.initData()
-        presenter.getCarousel()
-        presenter.getBlogs(curPage)
+        smartLayout.autoRefresh()
     }
 
     override fun setCarousels(carousels: MutableList<Carousel>) {
         mCarousels.clear()
         mCarousels.addAll(carousels)
         ultraViewPager.refresh()
-        scrollView.scrollTo(0,0)
     }
 
     override fun setBlogList(blogs: MutableList<Blog>) {
@@ -124,18 +123,14 @@ class SquareFragment : BaseFragment(), SquareView {
         curPage++
         mBlogs.addAll(blogs)
         blogAdapter.notifyDataSetChanged()
+        multiView.showContent()
     }
 
     override fun loading() {
-        if (curPage == 1) {
-            multiView.showLoading()
-        }
+
     }
 
     override fun stopLoad() {
-        if (curPage == 1) {
-            multiView.showContent()
-        }
         if (smartLayout.state == RefreshState.Refreshing) {
             smartLayout.finishRefresh()
         } else if (smartLayout.state == RefreshState.Loading) {
@@ -151,10 +146,10 @@ class SquareFragment : BaseFragment(), SquareView {
                 multiView.showNoNetwork()
             }
         }
+        smartLayout.setEnableLoadMore(false)
     }
 
     override fun closeMvp() {
         presenter.detach()
     }
-
 }

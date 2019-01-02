@@ -15,8 +15,7 @@
     <ImageView
             android:layout_width="100dp"
             android:layout_marginTop="20dp"
-            android:src="@mipmap/place_holder"
-            android:scaleType="fitXY"
+            android:src="@mipmap/app_icon"
             android:layout_gravity="center"
             android:layout_height="70dp"/>
 

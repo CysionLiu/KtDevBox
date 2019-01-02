@@ -7,6 +7,8 @@ import com.cysion.ktbox.net.ErrorStatus
 import com.cysion.ktbox.utils.whiteTextTheme
 import com.cysion.other.color
 import com.cysion.uibox.bar.TopBar
+import com.cysion.uibox.dialog.Alert
+import com.cysion.uibox.dialog.CONFIRM
 import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
 import com.cysion.usercenter.adapter.BlogAdapter
@@ -58,7 +60,11 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
             } else if (flag == EDIT) {
                 BlogEditorActivity.start(self, obj.title, obj.text, 1, obj.blogId)
             } else if (flag == DEL) {
-                presenter.deleteBlog(obj.blogId)
+                Alert.normal(self, "提示", "确认删除这个博客吗？") { type, msg ->
+                    if (type == CONFIRM) {
+                        presenter.deleteBlog(obj.blogId)
+                    }
+                }
             }
         }
     }
@@ -72,7 +78,7 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
         mBlogs.clear()
         mBlogs.addAll(blogList)
         blogAdapter.notifyDataSetChanged()
-        if (mBlogs.size==0) {
+        if (mBlogs.size == 0) {
             multiView.showEmpty()
         }
     }

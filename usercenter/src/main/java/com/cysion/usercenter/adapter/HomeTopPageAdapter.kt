@@ -36,7 +36,7 @@ class HomeTopPageAdapter(private val mContext: Context, private val datalist: Mu
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_carousel_square, null)
         Glide.with(mContext).load(datalist[position].picUrl).apply(
-            RequestOptions().placeholder(R.mipmap.place_holder_long)
+            RequestOptions().placeholder(R.mipmap.place_holder_big)
         ).into(view.ivCover)
         view.setOnClickListener {
             mListener?.invoke(datalist[position])

@@ -3,10 +3,10 @@ package com.cysion.shell
 import android.app.Application
 import android.content.Context
 import com.cysion.ktbox.Box
+import com.scwang.smartrefresh.header.DeliveryHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.*
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter
-import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import io.github.prototypez.appjoint.core.AppSpec
 
 
@@ -18,7 +18,7 @@ class MyApplication : Application() {
             //设置全局的Header构建器
             SmartRefreshLayout.setDefaultRefreshHeaderCreator(object :DefaultRefreshHeaderCreator{
                 override fun createRefreshHeader(context: Context, layout: RefreshLayout): RefreshHeader {
-                    return ClassicsHeader(context)
+                    return DeliveryHeader(context)
                 }
             })
             //设置全局的Footer构建器
