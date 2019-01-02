@@ -8,4 +8,9 @@ interface SquareView : IView {
     fun setCarousels(carousels: MutableList<Carousel>)
 
     fun setBlogList(blogs: MutableList<Blog>)
+
+
+    fun prideOk(index:Int)
+
+    fun unprideOk(index:Int)
 }

@@ -44,7 +44,7 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvTopbarTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

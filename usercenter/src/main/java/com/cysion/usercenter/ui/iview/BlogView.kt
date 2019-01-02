@@ -9,6 +9,10 @@ interface UserBlogListView : IView {
 
     fun delSuccessful()
 
+    fun prideOk(index:Int)
+
+    fun unprideOk(index:Int)
+
 }
 
 interface BlogEditorView : IView {
@@ -16,4 +20,21 @@ interface BlogEditorView : IView {
     fun createDone()
 
     fun updateDone()
+}
+
+interface BlogDetailView:IView{
+
+
+    fun prideOk(index:Int)
+
+    fun unprideOk(index:Int)
+
+    fun collect(index:Int)
+
+    fun unCollect(index:Int)
+
+    fun comment()
+
+    fun getComments()
+
 }

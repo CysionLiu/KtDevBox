@@ -18,7 +18,6 @@ import com.cysion.usercenter.entity.Blog
 import kotlinx.android.synthetic.main.item_blog_list.view.*
 
 
-
 /**
  * pageType:页面类型，用于跨页面复用
  * 这里，博客列表和某个用户博客列表是不一样的展现
@@ -73,6 +72,7 @@ class InnerBlogHolder(itemView: View, val pagetype: Int) :
                 itemView.tvPride.isClickable = false
             }
 
+            itemView.ivPride.isSelected = if (isPrided == 1) true else false
             Glide.with(mContext).load(obj.icon)
                 .apply(RequestOptions.placeholderOf(R.mipmap.place_holder))
                 .into(itemView.ivBlogCover)
@@ -83,13 +83,13 @@ class InnerBlogHolder(itemView: View, val pagetype: Int) :
             itemView.tvCreateTime.text = obj.createStamptime
 
             itemView.llPride._setOnClickListener {
-                mOnTypeClickListener?.invoke(obj,position, PRIDE)
+                mOnTypeClickListener?.invoke(obj, position, PRIDE)
             }
             itemView.llEdit._setOnClickListener {
-                mOnTypeClickListener?.invoke(obj,position, EDIT)
+                mOnTypeClickListener?.invoke(obj, position, EDIT)
             }
             itemView.llDel._setOnClickListener {
-                mOnTypeClickListener?.invoke(obj,position, DEL)
+                mOnTypeClickListener?.invoke(obj, position, DEL)
             }
         }
     }
@@ -105,7 +105,7 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
                 itemView.llDel.visibility = View.VISIBLE
                 itemView.tvPride.isClickable = false
             }
-
+            itemView.ivPride.isSelected = if (isPrided == 1) true else false
             Glide.with(mContext).load(obj.icon)
                 .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
                 .into(itemView.ivBlogCover)
@@ -116,13 +116,13 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
             itemView.tvCreateTime.text = obj.createStamptime
 
             itemView.llPride._setOnClickListener {
-                mOnTypeClickListener?.invoke(obj,position, PRIDE)
+                mOnTypeClickListener?.invoke(obj, position, PRIDE)
             }
             itemView.llEdit._setOnClickListener {
-                mOnTypeClickListener?.invoke(obj,position, EDIT)
+                mOnTypeClickListener?.invoke(obj, position, EDIT)
             }
             itemView.llDel._setOnClickListener {
-                mOnTypeClickListener?.invoke(obj,position, DEL)
+                mOnTypeClickListener?.invoke(obj, position, DEL)
             }
 
         }

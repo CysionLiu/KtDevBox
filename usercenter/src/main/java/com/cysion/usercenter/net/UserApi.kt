@@ -11,9 +11,11 @@ import retrofit2.http.*
 object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java, false)
 interface UserApi {
 
+//    顶部轮播
     @GET("toploopers")
     fun getgetCarousel(): Observable<BaseResponse<MutableList<Carousel>>>
 
+    //注册
     @FormUrlEncoded
     @POST("register")
     fun register(
@@ -22,6 +24,7 @@ interface UserApi {
         @Field("password2") password2: String
     ): Observable<BaseResponse<UserEntity>>
 
+    //登录
     @FormUrlEncoded
     @POST("login")
     fun login(
@@ -29,6 +32,8 @@ interface UserApi {
         @Field("password") password: String
     ): Observable<BaseResponse<UserEntity>>
 
+
+    //更新用户信息
     @FormUrlEncoded
     @POST("updateuser")
     fun updateUserInfo(
@@ -37,33 +42,53 @@ interface UserApi {
         @Field("avatar") avatar: String = ""
     ): Observable<BaseResponse<UserEntity>>
 
+    //获取用户详情
     @POST("userdetail")
     fun getUserInfo(): Observable<BaseResponse<UserEntity>>
 
 //    以下，博客相关
 
+    //获取博客列表，时间顺序
     @GET("blog/list")
     fun getBlogList(@Query("page") page: Int = 1): Observable<BaseResponse<MutableList<Blog>>>
 
 
+    //获取某个用户的博客
     @GET("blog/userlist")
     fun getUserBlogList(@Query("page") page: Int): Observable<BaseResponse<MutableList<Blog>>>
 
+    //删除博客
     @FormUrlEncoded
     @POST("blog/del")
     fun delBlog(@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
 
 
+    //创建博客
     @FormUrlEncoded
     @POST("blog/add")
     fun createBlog(@Field("title") title: String, @Field("text") text: String): Observable<BaseResponse<Any?>>
 
 
-
+    //更新博客
     @FormUrlEncoded
     @POST("blog/update")
     fun updateBlog(@Field("title") title: String, @Field("text") text: String
     ,@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
+
+
+
+    //点赞博客
+    @FormUrlEncoded
+    @POST("blog/pride")
+    fun prideBlog(@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
+
+
+
+    //取消点赞博客
+    @FormUrlEncoded
+    @POST("blog/unpride")
+    fun unPrideBlog(@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
+
 
 
 

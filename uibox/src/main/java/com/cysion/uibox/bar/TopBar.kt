@@ -71,10 +71,10 @@ class TopBar : RelativeLayout {
 
         if (center == ELEMENT.TEXT) {
             ivCenter.visibility = View.GONE
-            tvTitle.visibility = View.VISIBLE
+            tvTopbarTitle.visibility = View.VISIBLE
         } else if (center == ELEMENT.IMG) {
             ivCenter.visibility = View.VISIBLE
-            tvTitle.visibility = View.GONE
+            tvTopbarTitle.visibility = View.GONE
         } else {
             flayoutCenter.visibility = View.GONE
         }
@@ -105,11 +105,11 @@ class TopBar : RelativeLayout {
         } else if (aPos == Pos.RIGHT) {
             tvRight.text = msg
         } else {
-            tvTitle.text = msg
+            tvTopbarTitle.text = msg
         }
     }
 
     fun setTitle(text: String) {
-        tvTitle.text = text
+        tvTopbarTitle.text = text
     }
 }

@@ -1,5 +1,7 @@
 package com.cysion.usercenter.entity
 
+import java.io.Serializable
+
 data class Blog(
     val authorId: String,
     val blogId: String,
@@ -8,8 +10,9 @@ data class Blog(
     val isCollected: Int,
     val isDeleted: Int,
     val modifyStamptime: String,
-    val prideCount: Int,
+    var prideCount: Int,
     val text: String,
     val title: String,
-    val isLargeIcon:Int
-)
+    val isLargeIcon:Int,
+    var isPrided:Int
+) : Serializable

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    <com.cysion.uibox.bar.TopBar
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <ScrollView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+        <LinearLayout
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tvBlogTitle"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_largerx"
+                    tools:text="密密麻麻木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <ImageView
+                    android:id="@+id/ivIcon"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/place_holder_big"
+                    android:adjustViewBounds="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tvContent"
+                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/text_larger"
+                    tools:text="密密麻麻木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:layout_marginTop="10dp"
+                    android:background="@color/gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+            <TextView
+                    android:text="最新评论"
+                    android:textSize="@dimen/text_larger"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <com.classic.common.MultipleStatusView
+                    android:id="@+id/multiView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCommentlist"
+                        android:layout_marginBottom="20dp"
+                        android:padding="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+            </com.classic.common.MultipleStatusView>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+            android:gravity="right"
+            android:background="@color/gray_"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+
+        <LinearLayout
+                android:id="@+id/llPride"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_width="60dp"
+                android:layout_height="40dp">
+
+            <ImageView
+                    android:id="@+id/ivPride"
+                    android:layout_gravity="center"
+                    android:src="@drawable/pride_state"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"/>
+
+            <TextView
+                    android:id="@+id/tvPride"
+                    android:text="0"
+                    android:textSize="@dimen/text_small"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="6dp"
+                android:id="@+id/llCollect"
+                android:layout_width="60dp"
+                android:layout_toRightOf="@id/llPride"
+                android:layout_height="40dp">
+
+            <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/collect_state"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"/>
+
+            <TextView
+                    android:id="@+id/tvComment"
+                    android:textSize="@dimen/text_small"
+                    android:text="0"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="6dp"
+                android:id="@+id/llComment"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/llCollect"
+                android:layout_height="40dp">
+
+            <ImageView
+                    android:layout_gravity="center"
+                    android:src="@mipmap/comment_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"/>
+
+            <TextView
+                    android:textSize="@dimen/text_small"
+                    android:text="说点什么..."
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

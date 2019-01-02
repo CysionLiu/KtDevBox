@@ -49,10 +49,11 @@
                 android:layout_height="40dp">
 
             <ImageView
+                    android:id="@+id/ivPride"
                     android:layout_gravity="center"
                     android:src="@drawable/pride_state"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"/>
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"/>
 
             <TextView
                     android:id="@+id/tvPride"

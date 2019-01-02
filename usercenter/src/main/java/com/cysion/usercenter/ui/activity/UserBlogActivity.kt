@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_user_blogs.*
 
 class UserBlogActivity : BaseActivity(), UserBlogListView {
 
+
     val presenter by lazy {
         UserBlogPresenter().apply {
             attach(this@UserBlogActivity)
@@ -54,9 +55,13 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
         rvBloglist.adapter = blogAdapter
         blogAdapter.setOnTypeClickListener { obj, position, flag ->
             if (flag == ITEM_CLICK) {
-                toast("item")
+                BlogDetailActivity.start(self, obj, position)
             } else if (flag == PRIDE) {
-                toast("pride")
+                if (obj.isPrided == 1) {
+                    unPride(obj, position)
+                } else {
+                    toPride(obj, position)
+                }
             } else if (flag == EDIT) {
                 BlogEditorActivity.start(self, obj.title, obj.text, 1, obj.blogId)
             } else if (flag == DEL) {
@@ -68,6 +73,7 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
             }
         }
     }
+
 
     override fun initData() {
         super.initData()
@@ -88,12 +94,31 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
         presenter.getBlogs()
     }
 
+
+    private fun toPride(blog: Blog, pos: Int) {
+        presenter.pride(blog, pos)
+    }
+
+    override fun prideOk(index: Int) {
+        blogAdapter.notifyItemChanged(index)
+
+    }
+
+    private fun unPride(blog: Blog, pos: Int) {
+        presenter.unPride(blog, pos)
+    }
+
+
+    override fun unprideOk(index: Int) {
+        blogAdapter.notifyItemChanged(index)
+    }
+
     override fun loading() {
-        multiView.showLoading()
+        Alert.loading(self)
     }
 
     override fun stopLoad() {
-        multiView.showContent()
+        Alert.close()
     }
 
     override fun error(code: Int, msg: String) {

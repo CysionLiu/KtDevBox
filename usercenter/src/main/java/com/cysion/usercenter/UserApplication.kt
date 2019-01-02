@@ -13,7 +13,7 @@ class UserApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        UserUrls.debug = false
+        UserUrls.debug = true
         UserCaller.addInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
                 val builder = chain.request().newBuilder()
