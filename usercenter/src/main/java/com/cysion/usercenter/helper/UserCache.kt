@@ -32,6 +32,7 @@ object UserCache {
         }
     }
 
+    //从缓存中加载
     fun fromCache() {
         val userinfo = ACache.get(Box.context).getAsString(USER_KEY)
         var userInfo = Gson().fromjson<UserEntity>(userinfo)

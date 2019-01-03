@@ -80,7 +80,7 @@
             android:gravity="right"
             android:background="@color/gray_"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="42dp">
 
@@ -114,20 +114,21 @@
         <LinearLayout
                 android:layout_marginTop="6dp"
                 android:id="@+id/llCollect"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_toRightOf="@id/llPride"
                 android:layout_height="40dp">
 
             <ImageView
+                    android:id="@+id/ivCollect"
                     android:layout_gravity="center"
                     android:src="@drawable/collect_state"
                     android:layout_width="16dp"
                     android:layout_height="16dp"/>
 
             <TextView
-                    android:id="@+id/tvComment"
+                    android:id="@+id/tvCollect"
                     android:textSize="@dimen/text_small"
-                    android:text="0"
+                    android:text="收藏"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
                     android:ellipsize="end"

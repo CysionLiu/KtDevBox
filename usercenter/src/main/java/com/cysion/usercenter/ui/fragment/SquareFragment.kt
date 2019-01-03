@@ -15,9 +15,15 @@ import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
 import com.cysion.usercenter.adapter.BlogAdapter
 import com.cysion.usercenter.adapter.HomeTopPageAdapter
-import com.cysion.usercenter.comm.Resolver.mediaActivityApi
+import com.cysion.usercenter.communicate.Resolver.mediaActivityApi
+import com.cysion.usercenter.constant.COLLECT_CANCEL
+import com.cysion.usercenter.constant.COLLECT_OK
+import com.cysion.usercenter.constant.PRIDE_CANCEL
+import com.cysion.usercenter.constant.PRIDE_OK
 import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.Carousel
+import com.cysion.usercenter.event.BlogEvent
+import com.cysion.usercenter.helper.BlogHelper
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.presenter.SquarePresenter
 import com.cysion.usercenter.ui.activity.BlogDetailActivity
@@ -27,6 +33,8 @@ import com.cysion.usercenter.ui.iview.SquareView
 import com.scwang.smartrefresh.layout.constant.RefreshState
 import com.tmall.ultraviewpager.UltraViewPager
 import kotlinx.android.synthetic.main.fragment_square.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class SquareFragment : BaseFragment(), SquareView {
@@ -101,7 +109,7 @@ class SquareFragment : BaseFragment(), SquareView {
         rvBloglist.layoutManager = LinearLayoutManager(context)
         blogAdapter.setOnTypeClickListener { obj, position, flag ->
             if (flag == ITEM_CLICK) {
-                BlogDetailActivity.start(context, obj, position)
+                BlogDetailActivity.start(context, obj)
             } else if (flag == BlogAdapter.PRIDE) {
                 if (obj.isPrided == 1) {
                     unPride(obj, position)
@@ -191,5 +199,29 @@ class SquareFragment : BaseFragment(), SquareView {
 
     override fun closeMvp() {
         presenter.detach()
+    }
+
+
+    //接收BlogEvent事件
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun receive(event: BlogEvent) {
+        when (event.tag) {
+            PRIDE_OK ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.apply {
+                    isPrided = 1
+                    prideCount++
+                }
+            PRIDE_CANCEL ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.apply {
+                    isPrided = 0
+                    prideCount--
+                }
+            COLLECT_OK ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 1
+            COLLECT_CANCEL ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 0
+        }
+        blogAdapter.notifyDataSetChanged()
+
     }
 }

@@ -1,4 +1,4 @@
-package com.cysion.usercenter.comm
+package com.cysion.usercenter.communicate
 
 import com.cysion.router.media.service.ActivityApi
 import com.cysion.router.media.service.FragmentApi

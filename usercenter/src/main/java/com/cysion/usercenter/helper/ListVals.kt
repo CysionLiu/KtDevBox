@@ -2,7 +2,7 @@ package com.cysion.usercenter.helper
 
 import android.support.v4.app.Fragment
 import com.cysion.usercenter.R
-import com.cysion.usercenter.comm.Resolver
+import com.cysion.usercenter.communicate.Resolver
 import com.cysion.usercenter.ui.fragment.SquareFragment
 import com.cysion.usercenter.ui.fragment.UserFragment
 import java.util.*

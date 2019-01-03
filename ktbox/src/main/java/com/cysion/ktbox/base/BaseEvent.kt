@@ -9,7 +9,7 @@ package com.cysion.ktbox.base
 
 abstract class BaseEvent(
     val tag: Int,
-    val str: String
+    val msg: String
 ) {
     var arg: Int? = 0
     var obj: Any? = null

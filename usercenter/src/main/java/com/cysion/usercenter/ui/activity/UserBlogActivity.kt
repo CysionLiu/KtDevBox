@@ -16,10 +16,18 @@ import com.cysion.usercenter.adapter.BlogAdapter.Companion.DEL
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.EDIT
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.PRIDE
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.USER_PAGE
+import com.cysion.usercenter.constant.COLLECT_CANCEL
+import com.cysion.usercenter.constant.COLLECT_OK
+import com.cysion.usercenter.constant.PRIDE_CANCEL
+import com.cysion.usercenter.constant.PRIDE_OK
 import com.cysion.usercenter.entity.Blog
+import com.cysion.usercenter.event.BlogEvent
+import com.cysion.usercenter.helper.BlogHelper
 import com.cysion.usercenter.presenter.UserBlogPresenter
 import com.cysion.usercenter.ui.iview.UserBlogListView
 import kotlinx.android.synthetic.main.activity_user_blogs.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class UserBlogActivity : BaseActivity(), UserBlogListView {
 
@@ -55,13 +63,13 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
         rvBloglist.adapter = blogAdapter
         blogAdapter.setOnTypeClickListener { obj, position, flag ->
             if (flag == ITEM_CLICK) {
-                BlogDetailActivity.start(self, obj, position)
+                BlogDetailActivity.start(self, obj)
             } else if (flag == PRIDE) {
-                if (obj.isPrided == 1) {
-                    unPride(obj, position)
-                } else {
-                    toPride(obj, position)
-                }
+//                if (obj.isPrided == 1) {
+//                    unPride(obj, position)
+//                } else {
+//                    toPride(obj, position)
+//                }
             } else if (flag == EDIT) {
                 BlogEditorActivity.start(self, obj.title, obj.text, 1, obj.blogId)
             } else if (flag == DEL) {
@@ -133,5 +141,27 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
 
     override fun closeMvp() {
         presenter.detach()
+    }
+    //接收BlogEvent事件
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun receive(event: BlogEvent) {
+        when (event.tag) {
+            PRIDE_OK ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.apply {
+                    isPrided = 1
+                    prideCount++
+                }
+            PRIDE_CANCEL ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.apply {
+                    isPrided = 0
+                    prideCount--
+                }
+            COLLECT_OK ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 1
+            COLLECT_CANCEL ->
+                BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 0
+        }
+        blogAdapter.notifyDataSetChanged()
+
     }
 }

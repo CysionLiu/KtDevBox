@@ -89,6 +89,16 @@ interface UserApi {
     @POST("blog/unpride")
     fun unPrideBlog(@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
 
+    //收藏博客
+    @FormUrlEncoded
+    @POST("blog/collect")
+    fun collectBlog(@Field("itemId") blogId: String): Observable<BaseResponse<Any?>>
+
+
+    //取消收藏博客
+    @FormUrlEncoded
+    @POST("blog/uncollect")
+    fun unCollectBlog(@Field("itemId") blogId: String): Observable<BaseResponse<Any?>>
 
 
 

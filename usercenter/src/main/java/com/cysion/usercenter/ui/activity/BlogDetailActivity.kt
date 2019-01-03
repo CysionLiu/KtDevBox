@@ -6,17 +6,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.cysion.ktbox.base.BaseActivity
 import com.cysion.ktbox.utils.whiteTextTheme
+import com.cysion.other._setOnClickListener
 import com.cysion.other.color
 import com.cysion.other.startActivity_ex
 import com.cysion.uibox.bar.TopBar
+import com.cysion.uibox.dialog.Alert
+import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
-import com.cysion.usercenter.constant.BLOG
-import com.cysion.usercenter.constant.BLOG_INDEX
-import com.cysion.usercenter.constant.BUNDLE_KEY
+import com.cysion.usercenter.constant.*
 import com.cysion.usercenter.entity.Blog
+import com.cysion.usercenter.event.BlogEvent
 import com.cysion.usercenter.presenter.BlogDetailPresenter
 import com.cysion.usercenter.ui.iview.BlogDetailView
 import kotlinx.android.synthetic.main.activity_blog_detail.*
+import org.greenrobot.eventbus.EventBus
 
 class BlogDetailActivity : BaseActivity(), BlogDetailView {
 
@@ -25,10 +28,9 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
     type=0，创建；1，编辑
      */
     companion object {
-        fun start(activity: Activity, blog: Blog, index: Int) {
+        fun start(activity: Activity, blog: Blog) {
             val b = Bundle()
             b.putSerializable(BLOG, blog)
-            b.putSerializable(BLOG_INDEX, index)
             activity.startActivity_ex<BlogDetailActivity>(BUNDLE_KEY, b)
         }
     }
@@ -40,7 +42,7 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
     }
 
     private lateinit var blog: Blog
-    private var blogIndex = 0
+    private var blogId = ""
 
 
     override fun getLayoutId(): Int = R.layout.activity_blog_detail
@@ -61,8 +63,26 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
         super.initData()
         val bundleExtra = intent.getBundleExtra(BUNDLE_KEY)
         blog = bundleExtra.getSerializable(BLOG) as Blog
-        blogIndex = bundleExtra.getInt(BLOG_INDEX)
+        blogId = blog.blogId
         fillView()
+        initEvent()
+    }
+
+    private fun initEvent() {
+        llCollect._setOnClickListener {
+            if (blog.isCollected == 0) {
+                presenter.collect(blog.blogId)
+            } else {
+                presenter.unCollect(blog.blogId)
+            }
+        }
+        llPride._setOnClickListener {
+            if (blog.isPrided == 0) {
+                presenter.pride(blog)
+            } else {
+                presenter.unPride(blog)
+            }
+        }
     }
 
     private fun fillView() {
@@ -73,35 +93,56 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
             .into(ivIcon)
         tvPride.text = "${blog.prideCount}"
         ivPride.isSelected = blog.isPrided == 1
+        ivCollect.isSelected = blog.isCollected == 1
+        tvCollect.text = if (blog.isCollected == 1) "已收藏" else "收藏"
     }
 
     override fun closeMvp() {
+        presenter.detach()
     }
 
-    override fun prideOk(index: Int) {
+    override fun prideOk(blogId: String) {
+        fillView()
+        sendBusEvent(PRIDE_OK, blogId)
     }
 
-    override fun unprideOk(index: Int) {
+    override fun unprideOk(blogId: String) {
+        fillView()
+        sendBusEvent(PRIDE_CANCEL, blogId)
     }
 
-    override fun collect(index: Int) {
+    override fun collectOk(blogId: String) {
+        blog.isCollected = 1
+        fillView()
+        sendBusEvent(COLLECT_OK, blogId)
     }
 
-    override fun unCollect(index: Int) {
+    override fun unCollectOk(blogId: String) {
+        blog.isCollected = 0
+        fillView()
+        sendBusEvent(COLLECT_CANCEL, blogId)
     }
 
-    override fun comment() {
+    override fun commentOk(blogId: String) {
     }
 
     override fun getComments() {
     }
 
     override fun loading() {
+        Alert.loading(self)
     }
 
     override fun stopLoad() {
+        Alert.close()
     }
 
     override fun error(code: Int, msg: String) {
+        toast(msg)
+    }
+
+    //发送eventbus事件，用于更新首页列表
+    fun sendBusEvent(tag: Int, msg: String) {
+        EventBus.getDefault().post(BlogEvent(tag, msg))
     }
 }

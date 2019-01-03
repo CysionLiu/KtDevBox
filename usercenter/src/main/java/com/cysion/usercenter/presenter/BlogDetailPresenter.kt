@@ -1,10 +1,96 @@
 package com.cysion.usercenter.presenter
 
 import com.cysion.ktbox.base.BasePresenter
+import com.cysion.ktbox.net.BaseResponseRx
+import com.cysion.other.addTo
+import com.cysion.targetfun._subscribe
+import com.cysion.usercenter.entity.Blog
+import com.cysion.usercenter.net.UserCaller
 import com.cysion.usercenter.ui.iview.BlogDetailView
 
-class BlogDetailPresenter: BasePresenter<BlogDetailView>() {
+class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
 
 
+    fun pride(blog: Blog) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.prideBlog(blog.blogId)
+            .compose(BaseResponseRx.validateToMain2())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        attchedView?.stopLoad()
+                        blog.isPrided = 1
+                        blog.prideCount++
+                        prideOk(blog.blogId)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+    }
+
+    fun unPride(blog: Blog) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.unPrideBlog(blog.blogId)
+            .compose(BaseResponseRx.validateToMain2())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        attchedView?.stopLoad()
+                        blog.isPrided = 0
+                        blog.prideCount--
+                        unprideOk(blog.blogId)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+    }
+
+
+    fun collect(blogid: String) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.collectBlog(blogid)
+            .compose(BaseResponseRx.validateToMain2())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        stopLoad()
+                        collectOk(blogid)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+
+    }
+    fun unCollect(blogid: String) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.unCollectBlog(blogid)
+            .compose(BaseResponseRx.validateToMain2())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        stopLoad()
+                        unCollectOk(blogid)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+
+    }
 
 }

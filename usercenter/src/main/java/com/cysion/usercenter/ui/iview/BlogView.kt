@@ -24,16 +24,15 @@ interface BlogEditorView : IView {
 
 interface BlogDetailView:IView{
 
+    fun prideOk(blogId:String)
 
-    fun prideOk(index:Int)
+    fun unprideOk(blogId:String)
 
-    fun unprideOk(index:Int)
+    fun collectOk(blogId:String)
 
-    fun collect(index:Int)
+    fun unCollectOk(blogId:String)
 
-    fun unCollect(index:Int)
-
-    fun comment()
+    fun commentOk(blogId:String)
 
     fun getComments()
 

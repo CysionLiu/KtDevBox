@@ -7,12 +7,12 @@ data class Blog(
     val blogId: String,
     val createStamptime: String,
     val icon: String,
-    val isCollected: Int,
+    var isCollected: Int,
     val isDeleted: Int,
     val modifyStamptime: String,
     var prideCount: Int,
-    val text: String,
-    val title: String,
+    var text: String,
+    var title: String,
     val isLargeIcon:Int,
     var isPrided:Int
 ) : Serializable
