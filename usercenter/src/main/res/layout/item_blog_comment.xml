@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+    <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/ivAuthorAvatar"
+                android:src="@mipmap/place_holder"
+                android:layout_width="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_weight="1"
+            android:layout_marginRight="6dp"
+            android:padding="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:maxLines="2"
+                android:id="@+id/tvNickname"
+                tools:text="这是昵称"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvContent"
+                android:textSize="@dimen/text_small"
+                tools:text="这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容"
+                android:ellipsize="end"
+                android:paddingTop="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_below="@id/tvNickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvTime"
+                android:textSize="@dimen/text_small"
+                tools:text="2019-01-01"
+                android:maxLines="2"
+                android:gravity="right"
+                android:ellipsize="end"
+                android:layout_alignParentRight="true"
+                android:paddingTop="4dp"
+                android:layout_below="@id/tvContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.cysion.usercenter.ui.iview
 import com.cysion.ktbox.listener.IView
 import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.CollectEntity
+import com.cysion.usercenter.entity.CommentEntity
 
 interface UserBlogListView : IView {
 
@@ -35,7 +36,7 @@ interface BlogDetailView:IView{
 
     fun commentOk(blogId:String)
 
-    fun getComments()
+    fun setComments(datalist:MutableList<CommentEntity>)
 
 }
 

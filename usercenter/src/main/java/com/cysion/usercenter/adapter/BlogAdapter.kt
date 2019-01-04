@@ -86,7 +86,7 @@ class InnerBlogHolder(itemView: View, val pagetype: Int) :
                 .into(itemView.ivBlogCover)
             itemView.tvBlogTitle.text = obj.title
             itemView.tvPride.text = "${obj.prideCount}"
-            itemView.tvComment.text = "0"
+            itemView.tvComment.text = "${obj.commentCount}"
             itemView.tvContent.text = obj.text
             itemView.tvCreateTime.text = obj.createStamptime
 
@@ -112,7 +112,7 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
                 itemView.llEdit.visibility = View.VISIBLE
                 itemView.llDel.visibility = View.VISIBLE
                 itemView.tvPride.isClickable = false
-            }else if (pagetype == COLLECT) {
+            } else if (pagetype == COLLECT) {
                 itemView.llEdit.visibility = View.GONE
                 itemView.llPride.visibility = View.GONE
                 itemView.llComment.visibility = View.GONE
@@ -125,7 +125,7 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
                 .into(itemView.ivBlogCover)
             itemView.tvBlogTitle.text = obj.title
             itemView.tvPride.text = "${obj.prideCount}"
-            itemView.tvComment.text = "0"
+            itemView.tvComment.text = "${obj.commentCount}"
             itemView.tvContent.text = obj.text
             itemView.tvCreateTime.text = obj.createStamptime
 

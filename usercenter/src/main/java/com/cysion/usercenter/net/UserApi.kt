@@ -2,10 +2,7 @@ package com.cysion.usercenter.net
 
 import com.cysion.ktbox.net.BaseCaller
 import com.cysion.ktbox.net.BaseResponse
-import com.cysion.usercenter.entity.Blog
-import com.cysion.usercenter.entity.Carousel
-import com.cysion.usercenter.entity.CollectEntity
-import com.cysion.usercenter.entity.UserEntity
+import com.cysion.usercenter.entity.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -105,5 +102,20 @@ interface UserApi {
     //博客收藏列表
     @POST("blog/collections")
     fun getCollectList(@Query("colType") colType: String = "0"): Observable<BaseResponse<MutableList<CollectEntity>>>
+
+
+    //评论博客
+    @FormUrlEncoded
+    @POST("blog/comment")
+    fun commentBlog(
+        @Field("parentId") parentId: String,
+        @Field("content") content: String
+    ): Observable<BaseResponse<Any?>>
+
+
+    //获取评论列表，时间顺序
+    @GET("blog/comments/list")
+    fun getComments(@Query("parentId") parentId: String): Observable<BaseResponse<MutableList<CommentEntity>>>
+
 
 }

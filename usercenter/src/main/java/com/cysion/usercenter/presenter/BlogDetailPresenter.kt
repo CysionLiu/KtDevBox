@@ -73,6 +73,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
             }.addTo(compositeDisposable)
 
     }
+
     fun unCollect(blogid: String) {
         checkViewAttached()
         attchedView?.loading()
@@ -91,6 +92,44 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
                 }
             }.addTo(compositeDisposable)
 
+    }
+
+    fun comment(blogId: String, content: String) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.commentBlog(blogId, content)
+            .compose(BaseResponseRx.validateToMain2())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        stopLoad()
+                        commentOk(blogId)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+    }
+
+    fun getComments(blogId: String) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.getComments(blogId)
+            .compose(BaseResponseRx.validateToMain())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        stopLoad()
+                        setComments(it)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
     }
 
 }

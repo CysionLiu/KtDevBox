@@ -11,6 +11,7 @@ data class Blog(
     val isDeleted: Int,
     val modifyStamptime: String,
     var prideCount: Int,
+    var commentCount: Int,
     var text: String,
     var title: String,
     val isLargeIcon:Int,
