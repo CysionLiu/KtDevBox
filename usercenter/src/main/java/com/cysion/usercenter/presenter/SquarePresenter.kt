@@ -10,9 +10,10 @@ import com.cysion.usercenter.ui.iview.SquareView
 
 class SquarePresenter : BasePresenter<SquareView>() {
 
+    //获得顶部轮播
     fun getCarousel() {
         checkViewAttached()
-        UserCaller.api.getgetCarousel()
+        UserCaller.api.getCarousel()
             .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
@@ -24,6 +25,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
             }.addTo(compositeDisposable)
     }
 
+    //获得博客列表
     fun getBlogs(pageNum: Int) {
         checkViewAttached()
         UserCaller.api.getBlogList(page = pageNum)
@@ -41,6 +43,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
 
     }
 
+    //点赞博客
     fun pride(blog: Blog, pos: Int) {
         checkViewAttached()
         attchedView?.loading()
@@ -62,6 +65,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
             }.addTo(compositeDisposable)
     }
 
+    //取消点赞博客
     fun unPride(blog: Blog, pos: Int) {
         checkViewAttached()
         attchedView?.loading()

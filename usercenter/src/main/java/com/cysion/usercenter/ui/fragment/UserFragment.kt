@@ -12,6 +12,7 @@ import com.cysion.targetfun._subscribe
 import com.cysion.usercenter.R
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.net.UserCaller
+import com.cysion.usercenter.ui.activity.CollectActivitiy
 import com.cysion.usercenter.ui.activity.LoginActivity
 import com.cysion.usercenter.ui.activity.UserBlogActivity
 import com.cysion.usercenter.ui.activity.UserDetailActivity
@@ -34,6 +35,13 @@ class UserFragment : BaseFragment() {
         }
         rlInfo._setOnClickListener {
             toLogin()
+        }
+        rlCollect._setOnClickListener {
+            if (TextUtils.isEmpty(UserCache.token)) {
+                context.startActivity_ex<LoginActivity>()
+            } else {
+                context.startActivity_ex<CollectActivitiy>()
+            }
         }
         rlBlog._setOnClickListener {
             if (TextUtils.isEmpty(UserCache.token)) {

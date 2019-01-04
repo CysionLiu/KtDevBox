@@ -8,6 +8,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.text.ParseException
 
+//统一处理网络请求出现错误的情况，包括接口返回数据不是目标数据
 object ErrorHandler {
     var errorCode = ErrorStatus.UNKNOWN_ERROR
     var errorMsg = "请求失败，请稍后重试"
@@ -40,7 +41,7 @@ object ErrorHandler {
             errorMsg = "好像发生了点错误哦~"
             errorCode = ErrorStatus.SERVER_ERROR
         } else {//未知错误
-            errorMsg = "未知错误，可能服务器抛锚了吧~"
+            errorMsg = "服务器可能抛锚了~"
             errorCode = ErrorStatus.UNKNOWN_ERROR
         }
         val error = ApiException(errorCode, errorMsg)
@@ -48,6 +49,7 @@ object ErrorHandler {
     }
 }
 
+//除了接口返回错误码之外，本地补充码
 object ErrorStatus {
 
     /**

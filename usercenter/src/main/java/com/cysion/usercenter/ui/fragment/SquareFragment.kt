@@ -16,10 +16,7 @@ import com.cysion.usercenter.R
 import com.cysion.usercenter.adapter.BlogAdapter
 import com.cysion.usercenter.adapter.HomeTopPageAdapter
 import com.cysion.usercenter.communicate.Resolver.mediaActivityApi
-import com.cysion.usercenter.constant.COLLECT_CANCEL
-import com.cysion.usercenter.constant.COLLECT_OK
-import com.cysion.usercenter.constant.PRIDE_CANCEL
-import com.cysion.usercenter.constant.PRIDE_OK
+import com.cysion.usercenter.constant.*
 import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.Carousel
 import com.cysion.usercenter.event.BlogEvent
@@ -201,7 +198,6 @@ class SquareFragment : BaseFragment(), SquareView {
         presenter.detach()
     }
 
-
     //接收BlogEvent事件
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun receive(event: BlogEvent) {
@@ -220,8 +216,9 @@ class SquareFragment : BaseFragment(), SquareView {
                 BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 1
             COLLECT_CANCEL ->
                 BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 0
+            CREATE_BLOG, UPDATE_BLOG ->
+                smartLayout.autoRefresh()
         }
         blogAdapter.notifyDataSetChanged()
-
     }
 }

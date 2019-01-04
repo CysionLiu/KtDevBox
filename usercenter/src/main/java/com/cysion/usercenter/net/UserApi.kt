@@ -4,6 +4,7 @@ import com.cysion.ktbox.net.BaseCaller
 import com.cysion.ktbox.net.BaseResponse
 import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.Carousel
+import com.cysion.usercenter.entity.CollectEntity
 import com.cysion.usercenter.entity.UserEntity
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -11,9 +12,9 @@ import retrofit2.http.*
 object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java, false)
 interface UserApi {
 
-//    顶部轮播
+    //    顶部轮播
     @GET("toploopers")
-    fun getgetCarousel(): Observable<BaseResponse<MutableList<Carousel>>>
+    fun getCarousel(): Observable<BaseResponse<MutableList<Carousel>>>
 
     //注册
     @FormUrlEncoded
@@ -72,16 +73,16 @@ interface UserApi {
     //更新博客
     @FormUrlEncoded
     @POST("blog/update")
-    fun updateBlog(@Field("title") title: String, @Field("text") text: String
-    ,@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
-
+    fun updateBlog(
+        @Field("title") title: String, @Field("text") text: String
+        , @Field("blogId") blogId: String
+    ): Observable<BaseResponse<Any?>>
 
 
     //点赞博客
     @FormUrlEncoded
     @POST("blog/pride")
     fun prideBlog(@Field("blogId") blogId: String): Observable<BaseResponse<Any?>>
-
 
 
     //取消点赞博客
@@ -101,5 +102,8 @@ interface UserApi {
     fun unCollectBlog(@Field("itemId") blogId: String): Observable<BaseResponse<Any?>>
 
 
+    //博客收藏列表
+    @POST("blog/collections")
+    fun getCollectList(@Query("colType") colType: String = "0"): Observable<BaseResponse<MutableList<CollectEntity>>>
 
 }

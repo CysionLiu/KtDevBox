@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ui.activity.BlogDetailActivity">
         </activity>
+        <activity android:name=".ui.activity.CollectActivitiy">
+        </activity>
     </application>
 
 </manifest>

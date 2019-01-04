@@ -12,9 +12,11 @@ import com.cysion.uibox.dialog.Alert
 import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
 import com.cysion.usercenter.constant.*
+import com.cysion.usercenter.event.BlogEvent
 import com.cysion.usercenter.presenter.BlogEditorPresenter
 import com.cysion.usercenter.ui.iview.BlogEditorView
 import kotlinx.android.synthetic.main.activity_blog_editor.*
+import org.greenrobot.eventbus.EventBus
 
 class BlogEditorActivity : BaseActivity(), BlogEditorView {
 
@@ -127,11 +129,13 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
 
     override fun createDone() {
         toast("创建成功")
+        sendBusEvent(CREATE_BLOG, "")
         finish()
     }
 
     override fun updateDone() {
         toast("更新成功")
+        sendBusEvent(CREATE_BLOG, blogId)
     }
 
     override fun loading() {
@@ -148,5 +152,10 @@ class BlogEditorActivity : BaseActivity(), BlogEditorView {
 
     override fun closeMvp() {
         presenter.detach()
+    }
+
+    //发送eventbus事件，用于更新首页列表
+    fun sendBusEvent(tag: Int, msg: String) {
+        EventBus.getDefault().post(BlogEvent(tag, msg))
     }
 }

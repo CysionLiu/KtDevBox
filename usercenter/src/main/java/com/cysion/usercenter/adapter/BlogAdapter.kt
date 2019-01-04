@@ -10,6 +10,7 @@ import com.cysion.ktbox.base.BaseAdapter
 import com.cysion.ktbox.base.BaseViewHolder
 import com.cysion.other._setOnClickListener
 import com.cysion.usercenter.R
+import com.cysion.usercenter.adapter.BlogAdapter.Companion.COLLECT
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.DEL
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.EDIT
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.PRIDE
@@ -30,6 +31,7 @@ class BlogAdapter(mEntities: MutableList<Blog>, mContext: Context, val pageType:
         //页面类型
         const val COMMON_PAGE = 10000
         const val USER_PAGE = 10001
+        const val COLLECT = 10002
 
         //点击事件
         const val PRIDE = 2000
@@ -70,6 +72,12 @@ class InnerBlogHolder(itemView: View, val pagetype: Int) :
                 itemView.llEdit.visibility = View.VISIBLE
                 itemView.llDel.visibility = View.VISIBLE
                 itemView.tvPride.isClickable = false
+            } else if (pagetype == COLLECT) {
+                itemView.llEdit.visibility = View.GONE
+                itemView.llPride.visibility = View.GONE
+                itemView.llComment.visibility = View.GONE
+                itemView.llDel.visibility = View.VISIBLE
+                itemView.tvContent.visibility = View.GONE
             }
 
             itemView.ivPride.isSelected = if (isPrided == 1) true else false
@@ -104,6 +112,12 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
                 itemView.llEdit.visibility = View.VISIBLE
                 itemView.llDel.visibility = View.VISIBLE
                 itemView.tvPride.isClickable = false
+            }else if (pagetype == COLLECT) {
+                itemView.llEdit.visibility = View.GONE
+                itemView.llPride.visibility = View.GONE
+                itemView.llComment.visibility = View.GONE
+                itemView.llDel.visibility = View.VISIBLE
+                itemView.tvContent.visibility = View.GONE
             }
             itemView.ivPride.isSelected = if (isPrided == 1) true else false
             Glide.with(mContext).load(obj.icon)
