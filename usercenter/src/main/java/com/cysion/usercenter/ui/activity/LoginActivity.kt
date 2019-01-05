@@ -9,10 +9,13 @@ import com.cysion.uibox.bar.TopBar
 import com.cysion.uibox.dialog.Alert
 import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
+import com.cysion.usercenter.constant.LOGIN_IN
 import com.cysion.usercenter.entity.UserEntity
+import com.cysion.usercenter.event.UserEvent
 import com.cysion.usercenter.presenter.LoginPresenter
 import com.cysion.usercenter.ui.iview.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
+import org.greenrobot.eventbus.EventBus
 
 class LoginActivity : BaseActivity(), LoginView {
 
@@ -53,6 +56,7 @@ class LoginActivity : BaseActivity(), LoginView {
     override fun setUserInfo(u: UserEntity) {
         toast("登录成功")
         finish()
+        EventBus.getDefault().post(UserEvent(LOGIN_IN, ""))
     }
 
     override fun loading() {

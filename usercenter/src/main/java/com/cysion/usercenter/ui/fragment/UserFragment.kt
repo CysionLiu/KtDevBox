@@ -10,6 +10,8 @@ import com.cysion.other.addTo
 import com.cysion.other.startActivity_ex
 import com.cysion.targetfun._subscribe
 import com.cysion.usercenter.R
+import com.cysion.usercenter.constant.LOGIN_OUT
+import com.cysion.usercenter.event.UserEvent
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.net.UserCaller
 import com.cysion.usercenter.ui.activity.CollectActivitiy
@@ -18,6 +20,7 @@ import com.cysion.usercenter.ui.activity.UserBlogActivity
 import com.cysion.usercenter.ui.activity.UserDetailActivity
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_user_center.*
+import org.greenrobot.eventbus.EventBus
 
 class UserFragment : BaseFragment() {
 
@@ -53,6 +56,7 @@ class UserFragment : BaseFragment() {
         tvLogout._setOnClickListener {
             UserCache.clear()
             updateUserInfo()
+            EventBus.getDefault().post(UserEvent(LOGIN_OUT, ""))
         }
     }
 

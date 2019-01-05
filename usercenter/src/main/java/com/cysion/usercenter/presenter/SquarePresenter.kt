@@ -17,7 +17,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
             .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
-                    attchedView?.setCarousels(it)
+                    attchedView?.onGetCarousels(it)
                 }
                 _onError {
                     error(it)
@@ -33,7 +33,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
             ._subscribe {
                 _onNext {
                     attchedView?.stopLoad()
-                    attchedView?.setBlogList(it)
+                    attchedView?.onGetBlogs(it)
                 }
                 _onError {
                     attchedView?.stopLoad()

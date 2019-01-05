@@ -3,6 +3,8 @@ package com.cysion.usercenter.ui.activity
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.TextUtils
+import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.cysion.ktbox.base.BaseActivity
@@ -29,31 +31,32 @@ import org.greenrobot.eventbus.EventBus
 class BlogDetailActivity : BaseActivity(), BlogDetailView {
 
 
-    /*
-    启动该activity
-    type=0，创建；1，编辑
-     */
     companion object {
-        fun start(activity: Activity, blog: Blog) {
+        //blog和blogId不能同时为空
+        fun start(activity: Activity, blog: Blog?, blogId: String = "") {
+            if (blog == null && TextUtils.isEmpty(blogId)) {
+                return
+            }
             val b = Bundle()
+            b.putString(BLOG_ID, blogId)
             b.putSerializable(BLOG, blog)
             activity.startActivity_ex<BlogDetailActivity>(BUNDLE_KEY, b)
         }
     }
 
+    //评论相关
     private val commentList = mutableListOf<CommentEntity>()
     private lateinit var commentAdapter: CommentAdapter
 
+
+    private var blog: Blog? = null
+    private var mBlogId = ""
 
     private val presenter by lazy {
         BlogDetailPresenter().apply {
             attach(this@BlogDetailActivity)
         }
     }
-
-    private lateinit var blog: Blog
-    private var blogId = ""
-
 
     override fun getLayoutId(): Int = R.layout.activity_blog_detail
 
@@ -67,6 +70,11 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
                 }
             }
         }
+        initCommentView()
+    }
+
+    //初始化评论列表
+    private fun initCommentView() {
         rvCommentlist.isNestedScrollingEnabled = false
         rvCommentlist.layoutManager = LinearLayoutManager(self)
         commentAdapter = CommentAdapter(commentList, self)
@@ -76,51 +84,80 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
     override fun initData() {
         super.initData()
         val bundleExtra = intent.getBundleExtra(BUNDLE_KEY)
-        blog = bundleExtra.getSerializable(BLOG) as Blog
-        blogId = blog.blogId
+        val tmp = bundleExtra.getSerializable(BLOG)
+        if (tmp!= null) {
+            blog=tmp as Blog
+        }
+        mBlogId = bundleExtra.getString(BLOG_ID)
+        //若传来空id，则blog必然不能为空
+        if (TextUtils.isEmpty(mBlogId)) {
+            mBlogId = blog?.blogId!!
+        } else {
+            getDetail()
+        }
         fillView()
         initEvent()
-        presenter.getComments(blogId)
+        presenter.getComments(mBlogId)
+    }
+
+    private fun fillView() {
+        blog?.apply {
+            tvBlogTitle.text = title
+            tvContent.text = text
+            Glide.with(self).load(icon)
+                .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
+                .into(ivIcon)
+            tvPride.text = "${prideCount}"
+            ivPride.isSelected = isPrided == 1
+            ivCollect.isSelected = isCollected == 1
+            tvCollect.text = if (isCollected == 1) "已收藏" else "收藏"
+            if (TextUtils.isEmpty(createStamptime)) {
+                llPride.visibility = View.GONE
+            }
+        }
+
     }
 
     private fun initEvent() {
         llCollect._setOnClickListener {
-            if (blog.isCollected == 0) {
-                presenter.collect(blog.blogId)
-            } else {
-                presenter.unCollect(blog.blogId)
+            blog?.apply {
+                if (isCollected == 0) {
+                    presenter.collect(mBlogId)
+                } else {
+                    presenter.unCollect(mBlogId)
+                }
             }
+
         }
         llPride._setOnClickListener {
-            if (blog.isPrided == 0) {
-                presenter.pride(blog)
-            } else {
-                presenter.unPride(blog)
+            blog?.apply {
+                if (isPrided == 0) {
+                    presenter.pride(this)
+                } else {
+                    presenter.unPride(this)
+                }
             }
+
         }
         llComment._setOnClickListener {
             BlogHelper.comment(self) { type: Int, msg: String ->
                 if (type == CONFIRM) {
-                    presenter.comment(blogId, msg)
+                    presenter.comment(mBlogId, msg)
                 }
             }
         }
+
     }
 
-    private fun fillView() {
-        tvBlogTitle.text = blog.title
-        tvContent.text = blog.text
-        Glide.with(self).load(blog.icon)
-            .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
-            .into(ivIcon)
-        tvPride.text = "${blog.prideCount}"
-        ivPride.isSelected = blog.isPrided == 1
-        ivCollect.isSelected = blog.isCollected == 1
-        tvCollect.text = if (blog.isCollected == 1) "已收藏" else "收藏"
+    //根据id请求博客
+    private fun getDetail() {
+        presenter.getBlog(mBlogId)
     }
 
-    override fun closeMvp() {
-        presenter.detach()
+    //根据id获得了博客内容
+    override fun onGetBlog(obj: Blog) {
+        blog = obj
+        fillView()
     }
 
     override fun prideOk(blogId: String) {
@@ -134,25 +171,32 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
     }
 
     override fun collectOk(blogId: String) {
-        blog.isCollected = 1
+        blog?.isCollected = 1
         fillView()
         sendBusEvent(COLLECT_OK, blogId)
     }
 
     override fun unCollectOk(blogId: String) {
-        blog.isCollected = 0
+        blog?.isCollected = 0
         fillView()
         sendBusEvent(COLLECT_CANCEL, blogId)
     }
 
     override fun commentOk(blogId: String) {
         toast("评论成功")
+        presenter.getComments(blogId)
+        sendBusEvent(COMMENT, blogId)
     }
 
-    override fun setComments(datalist: MutableList<CommentEntity>) {
+    override fun onGetComments(datalist: MutableList<CommentEntity>) {
         commentList.clear()
         commentList.addAll(datalist)
         commentAdapter?.notifyDataSetChanged()
+        if (datalist.size == 0) {
+            multiView.showEmpty()
+        } else {
+            multiView.showContent()
+        }
     }
 
     override fun loading() {
@@ -165,6 +209,13 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
 
     override fun error(code: Int, msg: String) {
         toast(msg)
+        if (commentList.size == 0) {
+            multiView.showEmpty()
+        }
+    }
+
+    override fun closeMvp() {
+        presenter.detach()
     }
 
     //发送eventbus事件，用于更新首页列表

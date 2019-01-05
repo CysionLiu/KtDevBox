@@ -28,7 +28,10 @@
             android:maxLines="10"
             android:layout_marginTop="23dp"
             android:gravity="left"
-            android:padding="6dp"
+            android:maxLength="1000"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/shape_textarea"
             android:hint="请输入评论"
             android:includeFontPadding="false"
             android:textSize="@dimen/text_main"/>

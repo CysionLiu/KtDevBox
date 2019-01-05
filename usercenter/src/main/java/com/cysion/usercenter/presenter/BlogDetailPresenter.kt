@@ -113,6 +113,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
             }.addTo(compositeDisposable)
     }
 
+    //获取该博客的评论
     fun getComments(blogId: String) {
         checkViewAttached()
         attchedView?.loading()
@@ -122,7 +123,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
                 _onNext {
                     attchedView?.apply {
                         stopLoad()
-                        setComments(it)
+                        onGetComments(it)
                     }
                 }
                 _onError {
@@ -131,5 +132,26 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
                 }
             }.addTo(compositeDisposable)
     }
+
+
+    fun getBlog(blogId: String) {
+        checkViewAttached()
+        attchedView?.loading()
+        UserCaller.api.getBlog(blogId)
+            .compose(BaseResponseRx.validateToMain())
+            ._subscribe {
+                _onNext {
+                    attchedView?.apply {
+                        stopLoad()
+                        onGetBlog(it)
+                    }
+                }
+                _onError {
+                    attchedView?.stopLoad()
+                    error(it)
+                }
+            }.addTo(compositeDisposable)
+    }
+
 
 }

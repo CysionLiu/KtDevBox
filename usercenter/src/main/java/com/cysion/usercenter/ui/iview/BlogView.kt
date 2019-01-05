@@ -26,6 +26,8 @@ interface BlogEditorView : IView {
 
 interface BlogDetailView:IView{
 
+    fun onGetBlog(blog:Blog)
+
     fun prideOk(blogId:String)
 
     fun unprideOk(blogId:String)
@@ -36,7 +38,7 @@ interface BlogDetailView:IView{
 
     fun commentOk(blogId:String)
 
-    fun setComments(datalist:MutableList<CommentEntity>)
+    fun onGetComments(datalist:MutableList<CommentEntity>)
 
 }
 

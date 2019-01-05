@@ -55,6 +55,10 @@ interface UserApi {
     @GET("blog/userlist")
     fun getUserBlogList(@Query("page") page: Int): Observable<BaseResponse<MutableList<Blog>>>
 
+    //获取某个博客详情
+    @GET("blog/get/{blogId}")
+    fun getBlog(@Path("blogId") blogId: String): Observable<BaseResponse<Blog>>
+
     //删除博客
     @FormUrlEncoded
     @POST("blog/del")

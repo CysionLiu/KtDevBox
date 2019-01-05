@@ -157,7 +157,7 @@ class UserBlogActivity : BaseActivity(), UserBlogListView {
                 BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 1
             COLLECT_CANCEL ->
                 BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 0
-            CREATE_BLOG, UPDATE_BLOG ->
+            CREATE_BLOG, UPDATE_BLOG, COMMENT ->
                 presenter.getBlogs()
         }
         blogAdapter.notifyDataSetChanged()

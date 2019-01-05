@@ -10,9 +10,12 @@ import com.cysion.uibox.bar.TopBar
 import com.cysion.uibox.dialog.Alert
 import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
+import com.cysion.usercenter.constant.LOGIN_IN
+import com.cysion.usercenter.event.UserEvent
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.net.UserCaller
 import kotlinx.android.synthetic.main.activity_register.*
+import org.greenrobot.eventbus.EventBus
 
 class RegisterActivity : BaseActivity() {
 
@@ -59,6 +62,7 @@ class RegisterActivity : BaseActivity() {
                     toast("注册成功")
                     UserCache.save(it)
                     finish()
+                    EventBus.getDefault().post(UserEvent(LOGIN_IN, ""))
                 }
                 _onError {
                     Alert.close()

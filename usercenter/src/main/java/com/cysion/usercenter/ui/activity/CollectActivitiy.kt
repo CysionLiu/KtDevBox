@@ -54,7 +54,7 @@ class CollectActivitiy : BaseActivity(), CollectView {
         rvBloglist.adapter = blogAdapter
         blogAdapter.setOnTypeClickListener { obj, position, flag ->
             if (flag == ITEM_CLICK) {
-                BlogDetailActivity.start(self, obj)
+                BlogDetailActivity.start(self, null,obj.blogId)
             } else if (flag == BlogAdapter.DEL) {
                 Alert.normal(self, "提示", "确认取消这个收藏吗？") { type, msg ->
                     if (type == CONFIRM) {

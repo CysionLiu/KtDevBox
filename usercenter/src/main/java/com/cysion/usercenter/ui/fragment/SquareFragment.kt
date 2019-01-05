@@ -20,6 +20,7 @@ import com.cysion.usercenter.constant.*
 import com.cysion.usercenter.entity.Blog
 import com.cysion.usercenter.entity.Carousel
 import com.cysion.usercenter.event.BlogEvent
+import com.cysion.usercenter.event.UserEvent
 import com.cysion.usercenter.helper.BlogHelper
 import com.cysion.usercenter.helper.UserCache
 import com.cysion.usercenter.presenter.SquarePresenter
@@ -94,6 +95,8 @@ class SquareFragment : BaseFragment(), SquareView {
                 mediaActivityApi.startNewsActivity(context, it.title, it.link)
             } else if (it.type.equals("music")) {
                 mediaActivityApi.startSongsActivity(context, it.title, it.mediaId)
+            } else if (it.type.equals("blog")) {
+                BlogDetailActivity.start(context, null, it.mediaId)
             }
         }
     }
@@ -135,14 +138,14 @@ class SquareFragment : BaseFragment(), SquareView {
     }
 
     //得到轮播数据
-    override fun setCarousels(carousels: MutableList<Carousel>) {
+    override fun onGetCarousels(carousels: MutableList<Carousel>) {
         mCarousels.clear()
         mCarousels.addAll(carousels)
         ultraViewPager.refresh()
     }
 
     //得到博客列表
-    override fun setBlogList(blogs: MutableList<Blog>) {
+    override fun onGetBlogs(blogs: MutableList<Blog>) {
         if (curPage == 1) {
             mBlogs.clear()
         }
@@ -216,9 +219,18 @@ class SquareFragment : BaseFragment(), SquareView {
                 BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 1
             COLLECT_CANCEL ->
                 BlogHelper.getBlog(event.msg, mBlogs)?.isCollected = 0
-            CREATE_BLOG, UPDATE_BLOG ->
+            CREATE_BLOG, UPDATE_BLOG, COMMENT, LOGIN_IN, LOGIN_OUT ->
                 smartLayout.autoRefresh()
         }
         blogAdapter.notifyDataSetChanged()
+    }
+
+    //接收BlogEvent事件
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun receive(event: UserEvent) {
+        when (event.tag) {
+            LOGIN_IN, LOGIN_OUT ->
+                smartLayout.autoRefresh()
+        }
     }
 }
