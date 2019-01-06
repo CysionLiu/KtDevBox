@@ -4,7 +4,9 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.cysion.ktbox.listener.OnTypeClickListener
-
+/*
+列表条目holder基类，配合BaseAdapter<T>使用
+ */
 abstract class BaseViewHolder<T : Any>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var mPageType: String? = null
@@ -24,5 +26,6 @@ abstract class BaseViewHolder<T : Any>(itemView: View) : RecyclerView.ViewHolder
         fillData(obj, position)
     }
 
+    //填充数据
     protected abstract fun fillData(obj: T, position: Int)
 }

@@ -8,6 +8,9 @@ import io.github.prototypez.appjoint.core.ModuleSpec
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/*
+主app的application调用生命周期方法时，会对应调用该类的对应方法
+ */
 @ModuleSpec
 class UserApplication : Application() {
 

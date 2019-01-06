@@ -30,6 +30,7 @@ class MyApplication : Application() {
         }
     }
 
+    //该方法执行结束，会调用其它application子类的onCreate方法
     override fun onCreate() {
         super.onCreate()
         Box.init(this,true)

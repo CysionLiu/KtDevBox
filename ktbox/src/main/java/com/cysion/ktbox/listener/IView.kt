@@ -1,5 +1,7 @@
 package com.cysion.ktbox.listener
-
+/*
+View基类；与presenter绑定使用
+ */
 interface IView {
     
     //显示加载提示

@@ -13,6 +13,7 @@ open class BasePresenter<V : IView> {
     //rx事件流管理
     protected val compositeDisposable = CompositeDisposable()
 
+    //关联view与presenter
     fun attach(v: V) {
         attchedView = v
     }

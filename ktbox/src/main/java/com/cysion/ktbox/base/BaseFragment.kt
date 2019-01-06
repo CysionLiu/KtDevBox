@@ -16,6 +16,7 @@ abstract class BaseFragment : Fragment() {
 
     var mEverLoaded = false
 
+    //在onCreateView初始化；可避免getActivity的空指针
     val context by lazy {
         getActivity()!!
     }
@@ -87,8 +88,9 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun initView()
 
-    abstract fun closeMvp()
-
     protected open fun initData() {
     }
+
+    //若使用了mvp，可在此方法内 解绑view和presenter
+    abstract fun closeMvp()
 }

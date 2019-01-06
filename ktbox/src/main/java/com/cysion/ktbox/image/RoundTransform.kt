@@ -6,7 +6,10 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.cysion.ktbox.Box
 import com.cysion.other.density
 import java.security.MessageDigest
-
+/*
+Glide实现圆角矩形
+RequestOptions.bitmapTransform(RoundTransform(r))
+ */
 class RoundTransform(val r: Int) : BitmapTransformation() {
 
     private var radius = 0f

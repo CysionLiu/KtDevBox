@@ -3,12 +3,17 @@
           package="com.cysion.usercenter">
 
     <application>
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name="com.cysion.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.MainActivity"
+                android:launchMode="singleTask"
+                  android:screenOrientation="portrait"
+                >
         </activity>
         <activity android:name=".ui.activity.LoginActivity">
         </activity>
@@ -24,6 +29,7 @@
         </activity>
         <activity android:name=".ui.activity.CollectActivitiy">
         </activity>
+
     </application>
 
 </manifest>

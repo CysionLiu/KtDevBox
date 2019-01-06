@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    //避开与某些闭包内的this冲突
     protected val self: Activity by lazy {
         this
     }
@@ -29,7 +30,6 @@ abstract class BaseActivity : AppCompatActivity() {
         closeMvp()
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun fromEventbus(app: Application) {
         //仅占位，防止子类继承出问题
@@ -40,8 +40,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun initView()
 
-    abstract fun closeMvp()
-
     protected open fun initData() {
     }
+
+    //若使用了mvp，可在此方法内 解绑view和presenter
+    abstract fun closeMvp()
 }

@@ -72,7 +72,7 @@ fun View.gc() {
         view.removeAllViews()
     }
 }
-
+//gson解析简化类
 inline fun <reified T> Gson.fromjson(json: String?): T? {
     if (TextUtils.isEmpty(json)) {
         return null

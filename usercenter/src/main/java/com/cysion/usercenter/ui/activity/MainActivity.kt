@@ -7,15 +7,18 @@ import com.cysion.ktbox.utils.darkTextTheme
 import com.cysion.ktbox.utils.whiteTextTheme
 import com.cysion.other.color
 import com.cysion.targetfun._addOnPageChangeListener
+import com.cysion.uibox.toast.toast
 import com.cysion.usercenter.R
 import com.cysion.usercenter.helper.ListVals
 import com.cysion.usercenter.helper.UserCache
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
-    override fun getLayoutId(): Int = R.layout.activity_main
     private lateinit var mFragments: MutableList<Fragment>
     private lateinit var mTitles: MutableList<String>
+    var lastClickTime = 0L
+
+    override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initView() {
         whiteTextTheme(color(R.color.colorAccent))
@@ -36,7 +39,7 @@ class MainActivity : BaseActivity() {
                     2 -> {
                         whiteTextTheme(color(R.color.dark))
                     }
-                    0,3 -> {
+                    0, 3 -> {
                         whiteTextTheme(color(R.color.colorAccent))
                     }
                     else -> {
@@ -57,7 +60,15 @@ class MainActivity : BaseActivity() {
     }
 
     override fun closeMvp() {
+    }
 
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - lastClickTime >= 2000) {
+            toast("再点击一次即可退出")
+            lastClickTime = System.currentTimeMillis()
+            return
+        }
+        finish()
     }
 }
 
