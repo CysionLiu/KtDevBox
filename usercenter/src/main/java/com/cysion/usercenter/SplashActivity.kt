@@ -1,4 +1,4 @@
-package com.cysion
+package com.cysion.usercenter
 
 import android.os.Bundle
 import android.os.Handler

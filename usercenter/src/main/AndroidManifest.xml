@@ -3,7 +3,7 @@
           package="com.cysion.usercenter">
 
     <application>
-        <activity android:name="com.cysion.SplashActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
