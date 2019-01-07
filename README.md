@@ -1,12 +1,14 @@
-### 一款基于Kotlin+MVP+组件化的麻雀app
+### 一款基于Kotlin+MVP+组件化的app
 
-麻雀虽小，五脏俱全。
+麻雀虽小，五脏俱全。本app也是如此。
 
-其实本app并不叫做麻雀，只是本人认为它比较符合麻雀的特点：小而全。
 
 小，即轻量级，一是指app只专注于实现常见app基础的逻辑业务功能，并没有在某个功能点或者UI上做更为细节的实现；二是指app使用了简洁的的Kotlin语言作为实现语言，使用了相对简单的一种MVP实现方式，使用了一种比较轻量级的组件化方案。
 
 全，当然是相对的，一是指app的后端也是本人开发，这能让整个业务逻辑更为全面，也能让感兴趣读者能更为全面的了解此app；二是指app涉及了当前技术趋势下安卓开发的多个技术点，包括kotlin,mvp,组件化,rxjava,retrofit等；三是指本app实际上可以作为一个快速开发框架，这主要得益于组件化的实现，具体怎么使用，后续会提到。
+
+
+对后端实现感兴趣的，可以看看：
 
 [后端实现-KtDevBox-backend](https://github.com/CysionLiu/KtDevBox-backend)
 
@@ -15,6 +17,9 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190106232917274.png)
 
+
+
+喜欢的话，记得给个star
 
 
 
@@ -31,7 +36,7 @@ KtDevBox当然也存在的一些不足，但该项目的初衷，也仅做学习
 
 
 
-**主要功能点**
+**app涉及主要功能点**
 
 - 用户注册、登录以及资料管理功能；
 - 博客创建、更新、删除和查看等功能；
@@ -67,3 +72,22 @@ KtDevBox当然也存在的一些不足，但该项目的初衷，也仅做学习
 - [MultiWaveHeader](https://github.com/scwang90/MultiWaveHeader)
 - [xedittext](https://github.com/woxingxiao/XEditText)
 - [Targetfun](https://github.com/CysionLiu/kotlin-targetFun)
+
+
+
+**License**
+
+
+Copyright 2019 CysionLiu
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
