@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initView() {
-        whiteTextTheme(color(R.color.colorAccent))
+        darkTextTheme(color(R.color.white))
         vpContent.offscreenPageLimit = 4
     }
 
@@ -39,7 +39,7 @@ class MainActivity : BaseActivity() {
                     2 -> {
                         whiteTextTheme(color(R.color.dark))
                     }
-                    0, 3 -> {
+                    3 -> {
                         whiteTextTheme(color(R.color.colorAccent))
                     }
                     else -> {

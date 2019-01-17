@@ -150,8 +150,13 @@ class SquareFragment : BaseFragment(), SquareView {
             mBlogs.clear()
         }
         curPage++
+        val index = mBlogs.size
         mBlogs.addAll(blogs)
-        blogAdapter.notifyDataSetChanged()
+        if (index == 0) {
+            blogAdapter.notifyDataSetChanged()
+        } else {
+            blogAdapter.notifyItemRangeChanged(index, 10)
+        }
         multiView.showContent()
     }
 
@@ -181,7 +186,7 @@ class SquareFragment : BaseFragment(), SquareView {
         if (smartLayout.state == RefreshState.Refreshing) {
             smartLayout.finishRefresh()
         } else if (smartLayout.state == RefreshState.Loading) {
-            smartLayout.finishLoadMore()
+            smartLayout.finishLoadMore(100)
         }
         Alert.close()
     }
@@ -225,7 +230,7 @@ class SquareFragment : BaseFragment(), SquareView {
         blogAdapter.notifyDataSetChanged()
     }
 
-    //接收BlogEvent事件
+    //接收UserEvent事件，登录登出
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun receive(event: UserEvent) {
         when (event.tag) {
