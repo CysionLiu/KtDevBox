@@ -3,10 +3,24 @@ package com.cysion.usercenter.net
 import com.cysion.ktbox.net.BaseCaller
 import com.cysion.ktbox.net.BaseResponse
 import com.cysion.usercenter.entity.*
+import com.cysion.usercenter.helper.UserCache
 import io.reactivex.Observable
+import okhttp3.Interceptor
+import okhttp3.Response
 import retrofit2.http.*
 
-object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java, false)
+object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java){
+    override fun beforeInit() {
+        addInterceptor(object : Interceptor {
+            override fun intercept(chain: Interceptor.Chain): Response {
+                val builder = chain.request().newBuilder()
+                builder.addHeader("userid", UserCache.userId)
+                builder.addHeader("token", UserCache.token)
+                return chain.proceed(builder.build())
+            }
+        })
+    }
+}
 interface UserApi {
 
     //    顶部轮播
