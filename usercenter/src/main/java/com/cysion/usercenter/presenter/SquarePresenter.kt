@@ -48,7 +48,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.prideBlog(blog.blogId)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
@@ -70,7 +70,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.unPrideBlog(blog.blogId)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {

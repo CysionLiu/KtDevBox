@@ -15,7 +15,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.prideBlog(blog.blogId)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
@@ -36,7 +36,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.unPrideBlog(blog.blogId)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
@@ -58,7 +58,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.collectBlog(blogid)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
@@ -78,7 +78,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.unCollectBlog(blogid)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
@@ -98,7 +98,7 @@ class BlogDetailPresenter : BasePresenter<BlogDetailView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.commentBlog(blogId, content)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {

@@ -14,27 +14,19 @@ data class BaseResponse<T>(val code: Int, val msg: String, val data: T) {
 }
 
 object BaseResponseRx {
-    //当T为null时，不能调用map方法，应该用validateToMain2()；此时，code完全能表明结果状态
     fun <T> validateToMain(): ObservableTransformer<BaseResponse<T>, T> {
         return ObservableTransformer { observable ->
-            observable.map({
+            observable.map {
                 if (!it.isSuccessful()) {
                     throw ApiException(it.code, it.msg)
                 }
-                it.data
-            }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-        }
-    }
-
-    //T字段不存在或是为null时，用这个
-    fun <T> validateToMain2(): ObservableTransformer<BaseResponse<T>, BaseResponse<T>> {
-        return ObservableTransformer { observable ->
-            observable.map({
-                if (!it.isSuccessful()) {
-                    throw ApiException(it.code, it.msg)
+                if (it.data == null) {
+                    Any() as T
+                } else {
+                    it.data
                 }
-                it
-            }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
         }
     }
 }
