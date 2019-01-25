@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
                 android:id="@+id/scrollView"
                 android:background="@color/gray_"
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                             android:layout_height="match_parent"/>
                 </RelativeLayout>
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
         <android.support.design.widget.FloatingActionButton
                 android:layout_alignParentRight="true"

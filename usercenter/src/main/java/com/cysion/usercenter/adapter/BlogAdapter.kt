@@ -123,8 +123,9 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
             }
             itemView.ivPride.isSelected = if (isPrided == 1) true else false
             Glide.with(mContext).load(obj.icon)
-                .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
-                .apply(RequestOptions.bitmapTransform(RoundTransform(6)))
+                .apply(
+                    RequestOptions.placeholderOf(R.mipmap.place_holder_big)
+                )
                 .into(itemView.ivBlogCover)
             itemView.tvBlogTitle.text = obj.title
             itemView.tvPride.text = "${obj.prideCount}"

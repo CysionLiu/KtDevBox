@@ -37,6 +37,7 @@ class RoundTransform(val r: Int) : BitmapTransformation() {
         paint.isAntiAlias = true
         val rectF = RectF(0f, 0f, source.getWidth().toFloat(), source.getHeight().toFloat())
         canvas.drawRoundRect(rectF, radius, radius, paint)
+        canvas.setBitmap(null)
         return result
     }
 }
