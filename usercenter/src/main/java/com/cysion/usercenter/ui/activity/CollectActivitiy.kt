@@ -78,6 +78,7 @@ class CollectActivitiy : BaseActivity(), CollectView {
                 it.authorId, it.itemId, "", it.coverImg,
                 1, 0, "",
                 0, 0,"",it.itemTitle,  it.isLargeIcon, 0
+            ,"",""
             )
             mBlogs.add(tmp)
         }

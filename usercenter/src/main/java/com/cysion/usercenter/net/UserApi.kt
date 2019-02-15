@@ -6,10 +6,11 @@ import com.cysion.usercenter.entity.*
 import com.cysion.usercenter.helper.UserCache
 import io.reactivex.Observable
 import okhttp3.Interceptor
+import okhttp3.RequestBody
 import okhttp3.Response
 import retrofit2.http.*
 
-object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java){
+object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java) {
     override fun beforeInit() {
         addInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
@@ -21,6 +22,7 @@ object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java){
         })
     }
 }
+
 interface UserApi {
 
     //    顶部轮播
@@ -135,5 +137,11 @@ interface UserApi {
     @GET("blog/comments/list")
     fun getComments(@Query("parentId") parentId: String): Observable<BaseResponse<MutableList<CommentEntity>>>
 
+
+    //获得某个用户的详情
+    @POST("userinfo")
+    fun getPeopleInfo(
+        @Body jsonBody: RequestBody
+    ): Observable<BaseResponse<DetailUserEntity>>
 
 }

@@ -31,6 +31,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+            <LinearLayout
+                    android:id="@+id/llAuthorArea"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                <ImageView
+                        android:id="@+id/ivAvatar"
+                        android:padding="10dp"
+                        android:src="@mipmap/place_holder"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"/>
+
+                <TextView
+                        android:id="@+id/tvAuthorName"
+                        android:layout_marginLeft="6dp"
+                        tools:text="name"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
             <ImageView
                     android:id="@+id/ivIcon"
                     android:layout_marginTop="20dp"
