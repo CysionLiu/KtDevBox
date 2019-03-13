@@ -38,7 +38,8 @@
 
                 <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_weight="1"
+                        android:layout_height="0dp">
 
                     <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvBloglist"
@@ -47,6 +48,27 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                 </RelativeLayout>
+
+                <FrameLayout
+                        android:visibility="gone"
+                        android:id="@+id/fl_load_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+
+                    <TextView
+                            android:id="@+id/tvLoadFail"
+                            android:gravity="center"
+                            android:text="加载失败"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"/>
+                    <TextView
+                            android:id="@+id/tvLoadFinish"
+                            android:gravity="center"
+                            android:text="加载完成"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"/>
+                </FrameLayout>
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
