@@ -2,6 +2,7 @@ package com.cysion.usercenter.presenter
 
 import com.cysion.ktbox.base.BasePresenter
 import com.cysion.ktbox.net.BaseResponseRx
+import com.cysion.ktbox.net.ErrorHandler
 import com.cysion.other.addTo
 import com.cysion.targetfun._subscribe
 import com.cysion.usercenter.entity.Blog
@@ -37,7 +38,7 @@ class SquarePresenter : BasePresenter<SquareView>() {
                 }
                 _onError {
                     attchedView?.stopLoad()
-                    error(it)
+                    attchedView?.onGetBlogError(ErrorHandler.handle(it))
                 }
             }.addTo(compositeDisposable)
 

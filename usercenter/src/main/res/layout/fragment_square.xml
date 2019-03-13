@@ -53,20 +53,22 @@
                         android:visibility="gone"
                         android:id="@+id/fl_load_state"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp">
+                        android:layout_height="40dp">
 
                     <TextView
                             android:id="@+id/tvLoadFail"
                             android:gravity="center"
+                            android:visibility="gone"
                             android:text="加载失败"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"/>
+                            android:layout_height="20dp"/>
                     <TextView
                             android:id="@+id/tvLoadFinish"
                             android:gravity="center"
-                            android:text="加载完成"
+                            android:visibility="gone"
+                            android:text="没有更多数据了"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"/>
+                            android:layout_height="20dp"/>
                 </FrameLayout>
 
             </LinearLayout>

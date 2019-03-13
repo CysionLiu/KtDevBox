@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import android.view.Gravity
+import android.view.View
 import com.cysion.ktbox.base.BaseFragment
 import com.cysion.ktbox.base.ITEM_CLICK
+import com.cysion.ktbox.net.ApiException
 import com.cysion.ktbox.net.ErrorStatus
 import com.cysion.other._setOnClickListener
 import com.cysion.other.dp2px
@@ -37,6 +39,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class SquareFragment : BaseFragment(), SquareView {
 
+
     //绑定presenter
     private val presenter by lazy {
         SquarePresenter().apply {
@@ -65,8 +68,10 @@ class SquareFragment : BaseFragment(), SquareView {
             presenter.getCarousel()
             presenter.getBlogs(curPage)
             smartLayout.setEnableLoadMore(true)
+            fl_load_state.visibility= View.GONE
         }
         smartLayout.setOnLoadMoreListener {
+            fl_load_state.visibility= View.GONE
             presenter.getBlogs(curPage)
         }
     }
@@ -193,13 +198,26 @@ class SquareFragment : BaseFragment(), SquareView {
 
     override fun error(code: Int, msg: String) {
         toast(msg)
+    }
+
+    override fun onGetBlogError(e: ApiException) {
         if (mBlogs.size == 0 && mCarousels.size == 0) {
             multiView.showEmpty()
-            if (code == ErrorStatus.NETWORK_ERROR) {
+            if (e.errorCode == ErrorStatus.NETWORK_ERROR) {
                 multiView.showNoNetwork()
             }
         }
-        smartLayout.setEnableLoadMore(false)
+        //已获得所有数据
+        if (e.errorCode == 400) {
+            fl_load_state.visibility = View.VISIBLE
+            tvLoadFinish.visibility = View.VISIBLE
+            tvLoadFail.visibility = View.GONE
+            smartLayout.setEnableLoadMore(false)
+        } else {
+            fl_load_state.visibility = View.VISIBLE
+            tvLoadFinish.visibility = View.GONE
+            tvLoadFail.visibility = View.VISIBLE
+        }
     }
 
     override fun closeMvp() {
