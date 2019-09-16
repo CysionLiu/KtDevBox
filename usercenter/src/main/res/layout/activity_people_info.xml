@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <com.classic.common.MultipleStatusView
+            android:id="@+id/multiView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:id="@+id/rlTop"
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+            <com.scwang.wave.MultiWaveHeader
+                    app:mwhIsRunning="false"
+                    android:id="@+id/waveHeader"
+                    app:mwhStartColor="@color/colorAccent"
+                    app:mwhCloseColor="@color/colorAccent"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"/>
+
+            <ImageView
+                    android:id="@+id/ivUserHead"
+                    android:src="@mipmap/place_holder"
+                    android:layout_width="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_height="80dp"/>
+
+            <TextView
+                    android:id="@+id/tvNickname"
+                    android:maxWidth="200dp"
+                    android:layout_centerInParent="true"
+                    android:lines="1"
+                    android:layout_below="@id/ivUserHead"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="123"
+                    android:ellipsize="end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tvDesc"
+                    android:maxWidth="260dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    tools:text="密密麻麻木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@id/tvNickname"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="123"
+                    android:textColor="@color/main_text"
+                    android:textSize="@dimen/text_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:layout_below="@id/rlTop"
+                android:id="@+id/rvBloglist"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </com.classic.common.MultipleStatusView>
+
+    <ImageView
+            android:id="@+id/ivClose"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/back_white"
+            android:padding="9dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+</RelativeLayout>

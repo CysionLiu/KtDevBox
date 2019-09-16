@@ -15,5 +15,7 @@ data class Blog(
     var text: String,
     var title: String,
     val isLargeIcon:Int,
-    var isPrided:Int
+    var isPrided:Int,
+    var authorName:String,
+    var authorAvatar:String
 ) : Serializable

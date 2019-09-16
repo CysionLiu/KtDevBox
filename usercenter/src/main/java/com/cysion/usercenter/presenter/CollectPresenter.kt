@@ -35,7 +35,7 @@ class CollectPresenter : BasePresenter<CollectView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.unCollectBlog(itemId)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {

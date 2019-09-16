@@ -5,6 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/smartLayout"
         app:srlEnableNestedScrolling="false"
+        app:srlFooterHeight="30dp"
+        app:srlDisableContentWhenLoading="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,7 +18,7 @@
             android:layout_height="match_parent">
 
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
                 android:id="@+id/scrollView"
                 android:background="@color/gray_"
                 android:layout_width="match_parent"
@@ -31,12 +33,13 @@
                 <com.tmall.ultraviewpager.UltraViewPager
                         android:id="@+id/ultraViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="240dp"
                         />
 
                 <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_weight="1"
+                        android:layout_height="0dp">
 
                     <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvBloglist"
@@ -45,8 +48,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                 </RelativeLayout>
+
+                <FrameLayout
+                        android:visibility="gone"
+                        android:id="@+id/fl_load_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                    <TextView
+                            android:id="@+id/tvLoadFail"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:text="加载失败"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"/>
+                    <TextView
+                            android:id="@+id/tvLoadFinish"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:text="没有更多数据了"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"/>
+                </FrameLayout>
+
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
         <android.support.design.widget.FloatingActionButton
                 android:layout_alignParentRight="true"
@@ -59,6 +85,5 @@
                 android:layout_marginRight="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
     </com.classic.common.MultipleStatusView>
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

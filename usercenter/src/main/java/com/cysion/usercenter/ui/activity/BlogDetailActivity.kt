@@ -70,6 +70,9 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
                 }
             }
         }
+        llAuthorArea._setOnClickListener {
+            PeopleInfoActivity.start(self, blog?.authorId!!)
+        }
         initCommentView()
     }
 
@@ -85,8 +88,8 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
         super.initData()
         val bundleExtra = intent.getBundleExtra(BUNDLE_KEY)
         val tmp = bundleExtra.getSerializable(BLOG)
-        if (tmp!= null) {
-            blog=tmp as Blog
+        if (tmp != null) {
+            blog = tmp as Blog
         }
         mBlogId = bundleExtra.getString(BLOG_ID)
         //若传来空id，则blog必然不能为空
@@ -104,6 +107,11 @@ class BlogDetailActivity : BaseActivity(), BlogDetailView {
         blog?.apply {
             tvBlogTitle.text = title
             tvContent.text = text
+            tvAuthorName.text = authorName
+
+            Glide.with(self).load(authorAvatar)
+                .apply(RequestOptions.circleCropTransform().placeholder(R.mipmap.place_holder))
+                .into(ivAvatar)
             Glide.with(self).load(icon)
                 .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
                 .into(ivIcon)

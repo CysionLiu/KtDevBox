@@ -13,7 +13,7 @@ class BlogEditorPresenter : BasePresenter<BlogEditorView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.createBlog(title, text)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {
@@ -32,7 +32,7 @@ class BlogEditorPresenter : BasePresenter<BlogEditorView>() {
         checkViewAttached()
         attchedView?.loading()
         UserCaller.api.updateBlog(title, text, blogId)
-            .compose(BaseResponseRx.validateToMain2())
+            .compose(BaseResponseRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {

@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.cysion.ktbox.base.BaseAdapter
 import com.cysion.ktbox.base.BaseViewHolder
+import com.cysion.ktbox.image.RoundTransform
 import com.cysion.other._setOnClickListener
 import com.cysion.usercenter.R
 import com.cysion.usercenter.adapter.BlogAdapter.Companion.COLLECT
@@ -83,6 +84,7 @@ class InnerBlogHolder(itemView: View, val pagetype: Int) :
             itemView.ivPride.isSelected = if (isPrided == 1) true else false
             Glide.with(mContext).load(obj.icon)
                 .apply(RequestOptions.placeholderOf(R.mipmap.place_holder))
+                .apply(RequestOptions.bitmapTransform(RoundTransform(2)))
                 .into(itemView.ivBlogCover)
             itemView.tvBlogTitle.text = obj.title
             itemView.tvPride.text = "${obj.prideCount}"
@@ -121,7 +123,9 @@ class InnerBlogHolderBig(itemView: View, val pagetype: Int) :
             }
             itemView.ivPride.isSelected = if (isPrided == 1) true else false
             Glide.with(mContext).load(obj.icon)
-                .apply(RequestOptions.placeholderOf(R.mipmap.place_holder_big))
+                .apply(
+                    RequestOptions.placeholderOf(R.mipmap.place_holder_big)
+                )
                 .into(itemView.ivBlogCover)
             itemView.tvBlogTitle.text = obj.title
             itemView.tvPride.text = "${obj.prideCount}"
