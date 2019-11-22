@@ -79,3 +79,4 @@ inline fun <reified T> Gson.fromjson(json: String?): T? {
     }
     return GsonBuilder().create().fromJson(json, object : TypeToken<T>() {}.type)
 }
+

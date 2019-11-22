@@ -1,7 +1,7 @@
 package com.cysion.media.presenter
 
 import com.cysion.ktbox.base.BasePresenter
-import com.cysion.ktbox.net.BaseResponseRx.validateToMain
+import com.cysion.media.net.BaseRespRx
 import com.cysion.media.net.MediaCaller
 import com.cysion.media.ui.iview.NewsView
 import com.cysion.other.addTo
@@ -13,7 +13,7 @@ class NewsPresenter : BasePresenter<NewsView>() {
         checkViewAttached()
         attchedView?.loading()
         MediaCaller.api.getNewList()
-            .compose(validateToMain())
+            .compose(BaseRespRx.validateToMain())
             ._subscribe {
                 _onNext {
                     attchedView?.apply {

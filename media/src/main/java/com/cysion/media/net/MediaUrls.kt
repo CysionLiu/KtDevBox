@@ -13,7 +13,7 @@ object MediaUrls {
         }
 
     val SERVER_NEWS by lazy {
-       if(debug)"https://www.apiopen.top/" else "https://www.apiopen.top/"
+       if(debug)"https://api.apiopen.top/" else "https://api.apiopen.top/"
     }
     val SERVER_CHNS by lazy {
        if(debug)"https://api.apiopen.top/" else "https://api.apiopen.top/"

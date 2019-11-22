@@ -6,14 +6,12 @@ import android.support.v7.widget.LinearLayoutManager
 import com.cysion.ktbox.base.BaseFragment
 import com.cysion.ktbox.base.ITEM_CLICK
 import com.cysion.ktbox.net.ErrorStatus
-import com.cysion.ktbox.utils.logd
 import com.cysion.media.R
 import com.cysion.media.adapter.NewsAdapter
 import com.cysion.media.constant.BUNDLE_KEY
 import com.cysion.media.constant.LINK
 import com.cysion.media.constant.TITLE
-import com.cysion.media.entity.Data
-import com.cysion.media.entity.NewsInfo
+import com.cysion.media.entity.NewsInfoEntity
 import com.cysion.media.presenter.NewsPresenter
 import com.cysion.media.ui.activity.NewsDetailActivity
 import com.cysion.media.ui.iview.NewsView
@@ -25,7 +23,7 @@ class NewsFragment : BaseFragment(), NewsView {
 
 
     override fun getLayoutId(): Int = R.layout.fragment_news
-    private var mdatalist: MutableList<NewsInfo> = mutableListOf()
+    private var mdatalist: MutableList<NewsInfoEntity> = mutableListOf()
     private val presenter by lazy {
         NewsPresenter().apply { attach(this@NewsFragment) }
     }
@@ -41,7 +39,7 @@ class NewsFragment : BaseFragment(), NewsView {
             if (flag == ITEM_CLICK) {
                 val bundle = Bundle()
                 bundle.putString(TITLE, obj.title)
-                bundle.putString(LINK, obj.link)
+                bundle.putString(LINK, obj.path)
                 context?.startActivity_ex<NewsDetailActivity>(BUNDLE_KEY, bundle)
             }
         }
@@ -59,12 +57,8 @@ class NewsFragment : BaseFragment(), NewsView {
         }
     }
 
-    override fun setNewsList(data: Data) {
-        logd(data.tech.toString())
-        mdatalist.addAll(data.tech!!)
-        mdatalist.addAll(data.money!!)
-        mdatalist.addAll(data.sports!!)
-        mdatalist.addAll(data.dy!!)
+    override fun setNewsList(data: MutableList<NewsInfoEntity>) {
+        mdatalist.addAll(data)
         adapter.notifyDataSetChanged()
         if (mdatalist.size==0) {
             multiView.showEmpty()
