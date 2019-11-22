@@ -96,12 +96,22 @@ abstract class BaseCaller<T>(val baseUrl: String, val apiClass: Class<T>) {
     }
 
 
-    open protected fun getOkHttpClientBuilder(): OkHttpClient.Builder {
-        return BaseClient.mOkHttpClient.newBuilder()
+    protected fun getOkHttpClientBuilder(): OkHttpClient.Builder {
+        val builder = BaseClient.mOkHttpClient.newBuilder()
+        configOkClientBuilder(builder)
+        return builder
     }
 
-    open protected fun getRetrofitBuilder(): Retrofit.Builder {
-        return BaseClient.mRetrofit.newBuilder()
+    protected fun getRetrofitBuilder(): Retrofit.Builder {
+        val builder = BaseClient.mRetrofit.newBuilder()
+        configRetrofit(builder)
+        return builder
+    }
+
+    open protected fun configOkClientBuilder(builder: OkHttpClient.Builder) {
+    }
+
+    open  protected fun configRetrofit(builder: Retrofit.Builder) {
     }
 
     //使用不同的service api

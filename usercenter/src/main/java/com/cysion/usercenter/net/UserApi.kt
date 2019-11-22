@@ -5,21 +5,19 @@ import com.cysion.ktbox.net.BaseResponse
 import com.cysion.usercenter.entity.*
 import com.cysion.usercenter.helper.UserCache
 import io.reactivex.Observable
-import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
-import okhttp3.Response
 import retrofit2.http.*
 
 object UserCaller : BaseCaller<UserApi>(UserUrls.HOST, UserApi::class.java) {
-    override fun beforeInit() {
-        addInterceptor(object : Interceptor {
-            override fun intercept(chain: Interceptor.Chain): Response {
-                val builder = chain.request().newBuilder()
-                builder.addHeader("userid", UserCache.userId)
-                builder.addHeader("token", UserCache.token)
-                return chain.proceed(builder.build())
-            }
-        })
+
+    override fun configOkClientBuilder(builder: OkHttpClient.Builder) {
+        builder.addInterceptor {
+            val b = it.request().newBuilder()
+            b.addHeader("userid", UserCache.userId)
+            b.addHeader("token", UserCache.token)
+            it.proceed(b.build())
+        }
     }
 }
 
