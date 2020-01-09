@@ -2,6 +2,7 @@
 
 麻雀虽小，五脏俱全。本app也是如此。
 
+### 更推荐兄弟实现：[devbox-mvvm](https://github.com/CysionLiu/devbox-mvvm)
 
 小，即轻量级，一是指app只专注于实现常见app基础的逻辑业务功能，并没有在某个功能点或者UI上做更为细节的实现；二是指app使用了简洁的的Kotlin语言作为实现语言，使用了相对简单的一种MVP实现方式，使用了一种比较轻量级的组件化方案。
 
@@ -14,11 +15,11 @@
 
 
 
-对后端实现感兴趣的，可以看看：
+对后端实现感兴趣的，可以看看，也是本人开发：
 
 [后端实现-KtDevBox-backend](https://github.com/CysionLiu/KtDevBox-backend)
 
-##[兄弟项目-devbox-mvvm**推荐**](https://github.com/CysionLiu/devbox-mvvm)
+
 
 **app涉及主要功能点**
 
