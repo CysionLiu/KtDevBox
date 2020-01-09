@@ -9,9 +9,9 @@
 全，当然是相对的，一是指app的后端也是本人开发，这能让整个业务逻辑更为全面，也能让感兴趣读者能更为全面的了解此app；二是指app涉及了当前技术趋势下安卓开发的多个技术点，包括kotlin,mvp,组件化,rxjava,retrofit等；三是指本app实际上可以作为一个快速开发框架，这主要得益于组件化的实现，具体怎么使用，后续会提到。
 
 
-扫码下载可体验：
+扫码下载可体验,密码123：
 
-![在这里插入图片描述](https://github.com/CysionLiu/KtDevBox/blob/master/app.png)
+![在这里插入图片描述](https://cysion-box-1257966290.cos.ap-beijing.myqcloud.com/img/app/IRA3.png)
 
 
 
