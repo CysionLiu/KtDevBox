@@ -11,7 +11,7 @@
 
 扫码下载可体验：
 
-![在这里插入图片描述](./app.png)
+![在这里插入图片描述](https://github.com/CysionLiu/KtDevBox/blob/master/app.png)
 
 
 
