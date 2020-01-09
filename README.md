@@ -18,6 +18,7 @@
 
 [后端实现-KtDevBox-backend](https://github.com/CysionLiu/KtDevBox-backend)
 
+##[兄弟项目-devbox-mvvm**推荐**](https://github.com/CysionLiu/devbox-mvvm)
 
 **app涉及主要功能点**
 
